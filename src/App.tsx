@@ -312,8 +312,8 @@ export default function App() {
         <section id="projects" className="container py-16">
           <div className="mb-8 flex items-end justify-between">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold">Keli iš darbų</h2>
-              <p className="text-neutral-600 dark:text-neutral-400">Su meile, atkaklumu ir siekiu geriausio.</p>
+              <h2 className="text-2xl md:text-3xl font-bold">Darbų pavyzdžiai</h2>
+              <p className="text-neutral-600 dark:text-neutral-400">Su meile, atkaklumu ir siekiu geriausio</p>
             </div>
             <a href="#contact" className="text-sm underline-offset-2 hover:underline">Domina kažkas panašaus ir jus?</a>
           </div>
