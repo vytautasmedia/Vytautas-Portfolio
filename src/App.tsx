@@ -148,7 +148,7 @@ const SERVICES = [
     bullets: [
       'Reklaminiai klipai, aftermovie',
       'Interviu, social media turinys',
-      'Produktų video, subtitrai...',
+      'Produktų video, subtitrai, turizmas',
     ],
     price: 'Kaina pagal susitarimą',
   },
