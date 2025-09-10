@@ -25,7 +25,7 @@ const PROJECTS = [
   {
     title: 'Gargždų Banga vs Riteriai',
     role: 'Video produkcija / Reels',
-    cover: '/bangariteriai.jpg',
+    cover: "/covers/bangariteriai.jpg",
     tags: ['Sportas', 'Social Media', 'Short form'],
     link: '#',
   },
