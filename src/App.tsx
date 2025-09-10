@@ -4,6 +4,12 @@ import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
 import { Monitor } from 'lucide-react'
+import { 
+  Camera, Video as VideoIcon, BadgeCheck, Mail, MapPin, Sun, Moon,
+  Instagram, Facebook, Youtube, Rocket, Sparkles, ArrowRight, ChevronRight,
+  Monitor
+} from 'lucide-react'
+
 import {
   Camera,
   Video as VideoIcon,
@@ -145,14 +151,90 @@ const CONTRIBUTED = [
    ============================ */
 const SERVICES = [
   {
-    icon: <VideoIcon className='h-6 w-6' />,
+    icon: <VideoIcon className="h-6 w-6" />,
     name: 'Video produkcija',
-    desc: "Reklaminiai klipai, interviu, mic'd up, sporto turinys, turizmas, renginiai, produktų klipai, subtitrai, kūryba",
-    from: 'Kaina pagal poreikį',
+    bullets: [
+      'Reklaminiai klipai ir aftermovie',
+      'Interviu, social media turinys',
+      'Produktų video ir subtitrai',
+    ],
+    price: 'Kaina: pagal poreikį',
   },
-  { icon: <Monitor className='h-6 w-6' />, name: 'Video montavimas', desc: 'Įvairios video medžiagos montavimas', from: 'Kaina pagal poreikį' },
-  { icon: <Rocket className='h-6 w-6' />, name: 'Drono paslaugos', desc: '', from: 'Kaina pagal poreikį' },
+  {
+    icon: <Monitor className="h-6 w-6" />,
+    name: 'Video montavimas',
+    bullets: [
+      'Jūsų nufilmuotos medžiagos montažas',
+      'Spalvų korekcija ir garso švara',
+      'Subtitrai, grafika, titrai',
+    ],
+    price: 'Kaina: pagal poreikį',
+  },
+  {
+    icon: <Rocket className="h-6 w-6" />,
+    name: 'Drono paslaugos',
+    bullets: [
+      'Filmai iš oro (4K)',
+      'Renginiams, nekilnojamam turtui',
+      'Saugūs maršrutai ir leidimai',
+    ],
+    price: 'Kaina: pagal poreikį',
+  },
 ]
+{/* SERVICES */}
+<section id="services" className="border-y border-black/10 dark:border-white/10">
+  <div className="container py-16">
+    <div className="mb-8">
+      <h2 className="text-2xl md:text-3xl font-bold">Paslaugos</h2>
+      <p className="text-neutral-600 dark:text-neutral-400">
+        Lanksčūs paketai verslui, sporto klubams ir kūrėjams.
+      </p>
+    </div>
+
+    <div className="grid gap-6 md:grid-cols-3">
+      {SERVICES.map((s, i) => (
+        <motion.div
+          key={s.name}
+          variants={ITEM_VARIANTS}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: i * 0.05 }}
+        >
+          {/* Vienodas aukštis ir struktūra */}
+          <div className="card h-full">
+            <div className="p-5 flex h-full flex-col">
+              {/* Ikona */}
+              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10">
+                {s.icon}
+              </div>
+
+              {/* Antraštė */}
+              <h3 className="text-lg font-semibold">{s.name}</h3>
+
+              {/* Punktai – vienodas, trumpas sąrašas */}
+              <ul className="mt-2 space-y-1 text-sm text-neutral-500 dark:text-neutral-400">
+                {s.bullets.map((b) => (
+                  <li key={b} className="leading-relaxed">
+                    • {b}
+                  </li>
+                ))}
+              </ul>
+
+              {/* KAINOS ŽENKLAS – išskirtas, visada apačioje */}
+              <div className="mt-auto pt-4">
+                <span className="inline-flex items-center rounded-full border border-black/10 dark:border-white/10 px-3 py-1 text-xs font-medium tracking-wide text-neutral-700 dark:text-neutral-200">
+                  {s.price}
+                </span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
 
