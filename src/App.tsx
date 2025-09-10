@@ -24,10 +24,10 @@ const PROFILE = {
 const PROJECTS = [
   {
     title: 'Gargždų Banga vs Riteriai',
-    role: 'Video produkcija / Reels',
+    role: 'Video filmavimas / Montavimas / Reels',
     cover: "/covers/bangariteriai.jpg",
-    tags: ['Sportas', 'Social Media', 'Short form'],
-    link: '#',
+    tags: ['Sportas', 'Social Media', 'Reels'],
+    link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
   },
   {
     title: 'GST x Purlés – produktų reklamos',
