@@ -469,8 +469,7 @@ export default function App() {
                 Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą finalinio etapo. Man svarbus aiškumas, rezultatas ir klientas.
                 Darbą atlieku greitai ir kokybiškai.
 
-              </p>
-              <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-300">
+              <p className="mt-6 text-lg font-semibold text-neutral-800 dark:text-neutral-200">
   Turi idėją, bet nežinai kaip ją įgyvendinti? Parašyk – kartu sukursime viziją.
 </p>
             </div>
