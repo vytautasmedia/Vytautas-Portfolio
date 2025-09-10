@@ -117,11 +117,11 @@ const PROJECTS_BOTTOM = [
    ============================ */
 const CONTRIBUTED = [
   {
-    title: 'Spotas #1',
-    role: 'Montavimas',
-    cover: '/covers/bangariteriai.jpg',
-    link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
-    tags: ['Spotas', 'Montavimas'],
+    title: 'Toyota ėjimas kuris keičia',
+    role: 'Medžiagos montavimas',
+    cover: '/covers/',
+    link: 'https://youtu.be/PQWHWeBxhoE',
+    tags: ['Montavimas'],
   },
   {
     title: 'Spotas #2',
