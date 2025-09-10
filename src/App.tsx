@@ -458,11 +458,13 @@ export default function App() {
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
 
               {/* Aprašymas */}
-              <p className="mt-3 text-neutral-600 dark:text-neutral-300">
-                Esu {PROFILE.name}, kuriantis turinį Klaipėdoje ir už jos ribų. Kuriu vaizdinį turinį susijusį su įvairiais klientais.
-                Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą iki finalinio etapo. Man svarbus aiškumas, rezultatas ir klientas.
-                Darbą atlieku greitai ir kokybiškai.
-              </p>
+              <div className="mt-3 text-neutral-600 dark:text-neutral-300 space-y-2">
+  <p>Esu Vytautas Uselis, kuriantis turinį Klaipėdoje ir už jos ribų.</p>
+  <p>Kuriu vaizdinį turinį susijusį su įvairiais klientais.</p>
+  <p>Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą iki finalinio etapo.</p>
+  <p>Man svarbus aiškumas, rezultatas ir klientas.</p>
+  <p>Darbą atlieku greitai ir kokybiškai.</p>
+</div>
 
               {/* Akcentinis CTA */}
               <div className="mt-6 text-xl font-semibold">
