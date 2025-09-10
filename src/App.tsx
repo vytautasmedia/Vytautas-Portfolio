@@ -470,12 +470,9 @@ export default function App() {
                 Darbą atlieku greitai ir kokybiškai.
 
               </p>
-              <ul className="mt-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
-                <li>• 4K filmavimas, S-Log3/HLG koloritas, švarus garso įrašas</li>
-                <li>• Socialinių tinklų paketai: Reels/TikTok/YouTube Shorts</li>
-                <li>• Produktų foto ir e-shop vizualai</li>
-                <li>• Projekto planas ir grąžinimo terminai iš anksto</li>
-              </ul>
+              <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-300">
+  Turi idėją, bet nežinai kaip ją įgyvendinti? Parašyk – kartu sukursime viziją.
+</p>
             </div>
             <div className="md:col-span-2">
               <div className="card">
