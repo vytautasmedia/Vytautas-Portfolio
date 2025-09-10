@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
+import { Monitor } from 'lucide-react'
 import {
   Camera,
   Video as VideoIcon,
@@ -146,11 +147,11 @@ const SERVICES = [
   {
     icon: <VideoIcon className='h-6 w-6' />,
     name: 'Video produkcija',
-    desc: "Reklaminiai klipai, aftermovie, interviu, mic'd up, sporto turinys.",
-    from: 'nuo 250 €',
+    desc: "Reklaminiai klipai, interviu, mic'd up, sporto turinys, turizmas, renginiai, produktų klipai, subtitrai, kūryba",
+    from: 'Kaina pagal poreikį',
   },
-  { icon: <Camera className='h-6 w-6' />, name: 'Fotografija', desc: 'Produktų, portretų, renginių ir social media fotosesijos.', from: 'nuo 120 €' },
-  { icon: <Rocket className='h-6 w-6' />, name: 'Social Media / Ads', desc: 'Kūryba, filmukai, subtitrai, reklamos maketai, įrašų kalendorius.', from: 'pagal poreikį' },
+  { icon: <Monitor className='h-6 w-6' />, name: 'Video montavimas', desc: 'Įvairios video medžiagos montavimas', from: 'Kaina pagal poreikį' },
+  { icon: <Rocket className='h-6 w-6' />, name: 'Drono paslaugos', desc: '', from: 'Kaina pagal poreikį' },
 ]
 
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
