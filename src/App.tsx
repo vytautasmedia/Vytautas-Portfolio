@@ -118,21 +118,21 @@ const PROJECTS_BOTTOM = [
 const CONTRIBUTED = [
   {
     title: 'Toyota ėjimas kuris keičia',
-    role: 'Medžiagos montavimas',
+    role: 'Kitų filmuotos medžiagos montavimas',
     cover: '/covers/toyota.jpg',
     link: 'https://youtu.be/PQWHWeBxhoE',
     tags: ['Montavimas'],
   },
   {
     title: 'Dextera',
-    role: 'Montavimas',
+    role: 'Kitų filmuotos medžiagos montavimas',
     cover: '/covers/dextera.jpg',
     link: 'https://youtube.com/shorts/-T2-qEmDqkQ',
     tags: ['Montavimas'],
   },
   {
     title: 'Pjazz',
-    role: 'Montavimas',
+    role: 'Kitų filmuotos medžiagos montavimas',
     cover: '/covers/pjazz.jpg',
     link: 'https://youtube.com/shorts/HRXAf8doui4',
     tags: ['Montavimas'],
