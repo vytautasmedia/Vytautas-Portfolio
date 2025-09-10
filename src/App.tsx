@@ -119,23 +119,23 @@ const CONTRIBUTED = [
   {
     title: 'Toyota ėjimas kuris keičia',
     role: 'Medžiagos montavimas',
-    cover: '/covers/',
+    cover: '/covers/toyota.jpg',
     link: 'https://youtu.be/PQWHWeBxhoE',
     tags: ['Montavimas'],
   },
   {
-    title: 'Spotas #2',
+    title: 'Dextera',
     role: 'Montavimas',
-    cover: '/covers/grg.jpg',
-    link: 'https://www.youtube.com/watch?v=IqY5m8-AQcg',
-    tags: ['Spotas', 'Montavimas'],
+    cover: '/covers/dextera.jpg',
+    link: 'https://youtube.com/shorts/-T2-qEmDqkQ',
+    tags: ['Montavimas'],
   },
   {
-    title: 'Spotas #3',
+    title: 'Pjazz',
     role: 'Montavimas',
-    cover: '/covers/banga.jpg',
-    link: 'https://youtube.com/shorts/nhFanEVn2zQ',
-    tags: ['Spotas', 'Montavimas'],
+    cover: '/covers/pjazz.jpg',
+    link: 'https://youtube.com/shorts/HRXAf8doui4',
+    tags: ['Montavimas'],
   },
 ]
 
