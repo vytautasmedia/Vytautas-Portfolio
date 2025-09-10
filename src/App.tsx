@@ -237,9 +237,6 @@ export default function App() {
                       >
                         Peržiūrėti
                       </button>
-                      <a href='#' className='px-3 py-1 rounded-lg border border-gray-400 text-gray-300 hover:bg-gray-800 transition'>
-                        Case study
-                      </a>
                     </div>
                   </div>
                 </div>
