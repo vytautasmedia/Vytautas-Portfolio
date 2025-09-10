@@ -51,10 +51,10 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '+370 6xx xxxxx',                 // <- įrašyk savo
-  bankName: 'Swedbank',                    // pvz.
-  bankIban: 'LTxx xxxx xxxx xxxx xxxx',    // <- įrašyk savo IBAN
-  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. ______', // <- nr.
+  phone: '+370 614 44401',                 // <- įrašyk savo
+  bankName: 'Swedbank AB',                    // pvz.
+  bankIban: 'LT51 7300 0101 5880 3949',    // <- įrašyk savo IBAN
+  ivaNote: 'Darbas pagal individualią veiklą, paž. nr.1409134', // <- nr.
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
