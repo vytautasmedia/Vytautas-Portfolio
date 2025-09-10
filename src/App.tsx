@@ -474,7 +474,7 @@ export default function App() {
     Turi idėją, bet nežinai kaip ją įgyvendinti?
   </span>
   <span className="block text-neutral-800 dark:text-neutral-200">
-    Parašyk – kartu sukursime ką nors nerealaus.
+    Susisiek – kartu sukursime ką nors nerealaus.
   </span>
 </p>
             </div>
