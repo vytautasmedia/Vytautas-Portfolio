@@ -184,7 +184,7 @@ export default function App() {
 
             <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} className='relative'>
               <div className='aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl border border-black/10 dark:border-white/10'>
-                <img src='/hero.jpg' alt='Portfolio hero' className='h-full w-full object-cover' />
+                <img src='/vmlogo.jpg' alt='Portfolio hero' className='h-full w-full object-cover' />
               </div>
               <div className='absolute -bottom-6 -left-6 hidden md:block'>
                 <div className='card shadow-xl'>
