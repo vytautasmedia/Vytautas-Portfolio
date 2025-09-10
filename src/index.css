@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,13 +36,11 @@
 .input, .textarea {
   @apply w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/10 px-3 py-2 text-sm outline-none;
 }
-/* Sklandus scroll visiems <a href="#..."> */
+
+/* ——— Nauja: sklandus scroll ir kompensacija sticky header'iui ——— */
 html {
   scroll-behavior: smooth;
 }
-
-/* Kad sekcijos neužlįstų po sticky header'iu */
 section {
-  scroll-margin-top: 80px; /* ~ tavo headerio aukštis (reguliuok jei reikia) */
+  scroll-margin-top: 80px; /* priderink prie savo header aukščio */
 }
-
