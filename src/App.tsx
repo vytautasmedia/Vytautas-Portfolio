@@ -63,7 +63,7 @@ const PROFILE = {
   },
   // Po „Kodėl rinktis mane?“ mažas tekstas – laisvai redaguok
   clientsNote:
-    'Ieškau smulkaus ir vidutinio verslo, sporto klubų, renginių organizatorių ir kūrėjų. Dirbu su prekių ženklais, paslaugomis ir sporto komandomis – nuo idėjos iki finalinio montažo.',
+    '-------- ',
 }
 
 /* ============================
@@ -522,7 +522,7 @@ export default function App() {
 
               {/* Nauja maža sekcija: Ko ieškau / su kuo dirbu */}
               <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
-                <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Ko ieškau / su kuo dirbu</div>
+                <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Dirbu su klientais kurie:</div>
                 <p>{PROFILE.clientsNote}</p>
               </div>
             </div>
