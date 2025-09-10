@@ -73,14 +73,14 @@ const PROFILE = {
 const PROJECTS = [
   {
     title: 'Gargždų Banga vs Riteriai',
-    role: 'Video filmavimas / Montavimas / Reels',
+    role: 'Video filmavimas / Montavimas',
     cover: '/covers/bangariteriai.jpg',
     link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
     tags: ['Sportas', 'Social Media', 'Reels'],
   },
   {
     title: 'Lithuania | Gargždai',
-    role: 'Filmavimas / Dronas / Montažas',
+    role: 'Video filmavimas / Dronas / Montavimas',
     cover: '/covers/grg.jpg',
     link: 'https://www.youtube.com/watch?v=IqY5m8-AQcg',
     tags: ['Lietuva', 'Gamta', 'Dronas'],
