@@ -3,13 +3,6 @@ import { motion } from 'framer-motion'
 import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
-import { Monitor } from 'lucide-react'
-import { 
-  Camera, Video as VideoIcon, BadgeCheck, Mail, MapPin, Sun, Moon,
-  Instagram, Facebook, Youtube, Rocket, Sparkles, ArrowRight, ChevronRight,
-  Monitor
-} from 'lucide-react'
-
 import {
   Camera,
   Video as VideoIcon,
@@ -25,12 +18,12 @@ import {
   Sparkles,
   ArrowRight,
   ChevronRight,
+  Monitor,
 } from 'lucide-react'
 
 /* ============================
    Pagalbinės funkcijos (YouTube)
    ============================ */
-
 function getYouTubeId(url: string): string | null {
   try {
     const u = new URL(url)
@@ -50,7 +43,6 @@ const isYoutubeUrl = (url?: string) => !!(url && getYouTubeId(url))
 /* ============================
    Pagrindinė informacija
    ============================ */
-
 const PROFILE = {
   name: 'Vytautas Uselis',
   brand: 'vytautasmedia',
@@ -124,7 +116,7 @@ const PROJECTS_BOTTOM = [
    ============================ */
 const CONTRIBUTED = [
   {
-    title: 'Toyota ėjimas kuris keičia',
+    title: 'Toyota – ėjimas, kuris keičia',
     role: 'Kitų filmuotos medžiagos montavimas',
     cover: '/covers/toyota.jpg',
     link: 'https://youtu.be/PQWHWeBxhoE',
@@ -147,7 +139,7 @@ const CONTRIBUTED = [
 ]
 
 /* ============================
-   Paslaugos
+   Paslaugos (vienodas aukštis + ženklelis „Kaina: pagal poreikį“)
    ============================ */
 const SERVICES = [
   {
@@ -175,66 +167,12 @@ const SERVICES = [
     name: 'Drono paslaugos',
     bullets: [
       'Filmai iš oro (4K)',
-      'Renginiams, nekilnojamam turtui',
+      'Renginiams, NT ir renginiams',
       'Saugūs maršrutai ir leidimai',
     ],
     price: 'Kaina: pagal poreikį',
   },
 ]
-{/* SERVICES */}
-<section id="services" className="border-y border-black/10 dark:border-white/10">
-  <div className="container py-16">
-    <div className="mb-8">
-      <h2 className="text-2xl md:text-3xl font-bold">Paslaugos</h2>
-      <p className="text-neutral-600 dark:text-neutral-400">
-        Lanksčūs paketai verslui, sporto klubams ir kūrėjams.
-      </p>
-    </div>
-
-    <div className="grid gap-6 md:grid-cols-3">
-      {SERVICES.map((s, i) => (
-        <motion.div
-          key={s.name}
-          variants={ITEM_VARIANTS}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: i * 0.05 }}
-        >
-          {/* Vienodas aukštis ir struktūra */}
-          <div className="card h-full">
-            <div className="p-5 flex h-full flex-col">
-              {/* Ikona */}
-              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10">
-                {s.icon}
-              </div>
-
-              {/* Antraštė */}
-              <h3 className="text-lg font-semibold">{s.name}</h3>
-
-              {/* Punktai – vienodas, trumpas sąrašas */}
-              <ul className="mt-2 space-y-1 text-sm text-neutral-500 dark:text-neutral-400">
-                {s.bullets.map((b) => (
-                  <li key={b} className="leading-relaxed">
-                    • {b}
-                  </li>
-                ))}
-              </ul>
-
-              {/* KAINOS ŽENKLAS – išskirtas, visada apačioje */}
-              <div className="mt-auto pt-4">
-                <span className="inline-flex items-center rounded-full border border-black/10 dark:border-white/10 px-3 py-1 text-xs font-medium tracking-wide text-neutral-700 dark:text-neutral-200">
-                  {s.price}
-                </span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
-
 
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
 
@@ -375,7 +313,7 @@ export default function App() {
           <div className="mb-8 flex items-end justify-between">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold">Keli iš darbų</h2>
-              <p className="text-neutral-600 dark:text-neutral-400">Su meile, atkaklumu ir siekiu geriausio</p>
+              <p className="text-neutral-600 dark:text-neutral-400">Su meile, atkaklumu ir siekiu geriausio.</p>
             </div>
             <a href="#contact" className="text-sm underline-offset-2 hover:underline">Domina kažkas panašaus ir jus?</a>
           </div>
@@ -441,7 +379,9 @@ export default function App() {
         <section className="container py-12">
           <div className="mb-6">
             <h3 className="text-xl md:text-2xl font-semibold">Darbai prie kurių prisidėjau</h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">Kitų žmonių filmuotos vaizdinės medžiagos montavimas</p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">
+              Kitų žmonių filmuotos vaizdinės medžiagos montavimas
+            </p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -472,23 +412,46 @@ export default function App() {
           </div>
         </section>
 
-        {/* SERVICES */}
+        {/* PASLAUGOS */}
         <section id="services" className="border-y border-black/10 dark:border-white/10">
           <div className="container py-16">
             <div className="mb-8">
               <h2 className="text-2xl md:text-3xl font-bold">Paslaugos</h2>
-              <p className="text-neutral-600 dark:text-neutral-400">Lankstūs paketai verslui, sporto klubams ir kūrėjams.</p>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Lanksčūs paketai verslui, sporto klubams ir kūrėjams.
+              </p>
             </div>
+
             <div className="grid gap-6 md:grid-cols-3">
               {SERVICES.map((s, i) => (
-                <motion.div key={s.name} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }}>
-                  <div className="card">
-                    <div className="p-5">
-                      <div className="mb-2 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10">{s.icon}</div>
+                <motion.div
+                  key={s.name}
+                  variants={ITEM_VARIANTS}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                >
+                  <div className="card h-full">
+                    <div className="p-5 flex h-full flex-col">
+                      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10">
+                        {s.icon}
+                      </div>
+
                       <h3 className="text-lg font-semibold">{s.name}</h3>
-                      <p className="text-sm text-neutral-500 dark:text-neutral-400">{s.desc}</p>
+
+                      <ul className="mt-2 space-y-1 text-sm text-neutral-500 dark:text-neutral-400">
+                        {s.bullets.map((b) => (
+                          <li key={b} className="leading-relaxed">• {b}</li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-auto pt-4">
+                        <span className="inline-flex items-center rounded-full border border-black/10 dark:border-white/10 px-3 py-1 text-xs font-medium tracking-wide text-neutral-700 dark:text-neutral-200">
+                          {s.price}
+                        </span>
+                      </div>
                     </div>
-                    <div className="px-5 pb-5 text-sm text-neutral-600 dark:text-neutral-300">Kaina {s.from}</div>
                   </div>
                 </motion.div>
               ))}
