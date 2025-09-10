@@ -1,0 +1,308 @@
+
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './components/ui/card'
+import { Button } from './components/ui/button'
+import { Input } from './components/ui/input'
+import { Textarea } from './components/ui/textarea'
+import { Camera, Video, BadgeCheck, Mail, Phone, MapPin, Sun, Moon, Instagram, Facebook, Youtube, Download, Rocket, Sparkles, Palette, ArrowRight, ChevronRight } from 'lucide-react'
+
+const PROFILE = {
+  name: 'Vytautas Uselis',
+  brand: 'Vytautas Media',
+  title: 'Videografas • Fotografas • Social Media',
+  location: 'Klaipėda, Lietuva',
+  email: 'vytautas@example.com',
+  phone: '+370 6xx xxxxx',
+  cvUrl: '#',
+  socials: {
+    instagram: 'https://instagram.com/',
+    facebook: 'https://facebook.com/',
+    youtube: 'https://youtube.com/',
+  },
+}
+
+const PROJECTS = [
+  {
+    title: 'Gargždų Banga – Mic\'d Up',
+    role: 'Video produkcija / įgarsinimas',
+    cover: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1600&auto=format&fit=crop',
+    tags: ['Sportas', 'Social Media', 'Short form'],
+    link: '#',
+  },
+  {
+    title: 'GST x Purlés – produktų reklamos',
+    role: 'Režisūra / filmavimas / montažas',
+    cover: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1600&auto=format&fit=crop',
+    tags: ['Beauty', 'Ads', 'UGC'],
+    link: '#',
+  },
+  {
+    title: 'Padelio turnyras – aftermovie',
+    role: 'Operatorius / montažas',
+    cover: 'https://images.unsplash.com/photo-1521417531039-96c47eb0b1d2?q=80&w=1600&auto=format&fit=crop',
+    tags: ['Sportas', 'Event', 'Storytelling'],
+    link: '#',
+  },
+  {
+    title: 'Mažasis verslas – branding video',
+    role: 'Idėja / koloritas / garsas',
+    cover: 'https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d2?q=80&w=1600&auto=format&fit=crop',
+    tags: ['Branding', 'Story', 'YouTube'],
+    link: '#',
+  },
+  {
+    title: 'Produktų foto serija',
+    role: 'Fotografija / retušas',
+    cover: 'https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?q=80&w=1600&auto=format&fit=crop',
+    tags: ['Product', 'E‑shop', 'Studio'],
+    link: '#',
+  },
+  {
+    title: 'Socialinių tinklų klipai',
+    role: 'Trumpi formatai / subtitles',
+    cover: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1600&auto=format&fit=crop',
+    tags: ['Reels/TikTok', 'Kampanijos', 'KPI'],
+    link: '#',
+  },
+]
+
+const SERVICES = [
+  { icon: <Video className='h-6 w-6' />, name: 'Video produkcija', desc: 'Reklaminiai klipai, aftermovie, interviu, mic\'d up, sporto turinys.', from: 'nuo 250 €' },
+  { icon: <Camera className='h-6 w-6' />, name: 'Fotografija', desc: 'Produktų, portretų, renginių ir social media fotosesijos.', from: 'nuo 120 €' },
+  { icon: <Rocket className='h-6 w-6' />, name: 'Social Media / Ads', desc: 'Kūryba, filmukai, subtitrai, reklamos maketai, įrašų kalendorius.', from: 'pagal poreikį' },
+]
+
+const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
+
+export default function App() {
+  const [dark, setDark] = useState(true)
+  return (
+    <div className={dark ? 'dark' : ''}>
+      <div className='theme min-h-screen transition-colors'>
+        {/* NAV */}
+        <header className='sticky top-0 z-40 border-b border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/30 backdrop-blur'>
+          <div className='container py-3 flex items-center justify-between'>
+            <a href='#hero' className='flex items-center gap-2 font-semibold'>
+              <div className='h-8 w-8 rounded-2xl border border-black/10 dark:border-white/10 flex items-center justify-center'>
+                <Sparkles className='h-4 w-4' />
+              </div>
+              <span>{PROFILE.brand}</span>
+            </a>
+            <nav className='hidden md:flex items-center gap-6 text-sm'>
+              <a href='#projects' className='hover:underline'>Darbai</a>
+              <a href='#services' className='hover:underline'>Paslaugos</a>
+              <a href='#about' className='hover:underline'>Apie</a>
+              <a href='#contact' className='hover:underline'>Kontaktai</a>
+            </nav>
+            <div className='flex items-center gap-2'>
+              <button aria-label='Perjungti temą' onClick={() => setDark(!dark)} className='btn'>
+                {dark ? <Sun className='h-5 w-5' /> : <Moon className='h-5 w-5' />}
+              </button>
+              <a href='#contact'><button className='btn btn-primary hidden sm:inline-flex'>Siųsti užklausą <ChevronRight className='ml-1 h-4 w-4' /></button></a>
+            </div>
+          </div>
+        </header>
+
+        {/* HERO */}
+        <section id='hero' className='border-b border-black/10 dark:border-white/10'>
+          <div className='container py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center'>
+            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+              <div className='inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs border-black/10 dark:border-white/10'>
+                <BadgeCheck className='h-4 w-4' /> Laisvos datos rugsėjo–spalio mėn.
+              </div>
+              <h1 className='mt-4 text-4xl md:text-6xl font-bold leading-tight'>{PROFILE.name}</h1>
+              <p className='mt-2 text-lg text-neutral-500 dark:text-neutral-400'>{PROFILE.title}</p>
+              <p className='mt-4 text-base text-neutral-600 dark:text-neutral-300'>
+                Kuriu aiškias, estetiškas ir rezultatus nešančias istorijas – nuo sporto mic'd up iki beauty produktų.
+              </p>
+              <div className='mt-6 flex flex-wrap items-center gap-3'>
+                <a href='#projects'><button className='btn btn-primary'>Peržiūrėti darbus <ArrowRight className='ml-1 h-4 w-4' /></button></a>
+                <a href={PROFILE.cvUrl}><button className='btn'><Download className='mr-2 h-4 w-4' />Atsisiųsti CV</button></a>
+              </div>
+              <div className='mt-6 flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300'>
+                <div className='flex items-center gap-1'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
+                <div className='flex items-center gap-1'><Mail className='h-4 w-4' /> {PROFILE.email}</div>
+                <div className='flex items-center gap-1'><Phone className='h-4 w-4' /> {PROFILE.phone}</div>
+              </div>
+              <div className='mt-4 flex items-center gap-3'>
+                <a href={PROFILE.socials.instagram} aria-label='Instagram' className='opacity-80 hover:opacity-100'><Instagram className='h-5 w-5' /></a>
+                <a href={PROFILE.socials.facebook} aria-label='Facebook' className='opacity-80 hover:opacity-100'><Facebook className='h-5 w-5' /></a>
+                <a href={PROFILE.socials.youtube} aria-label='YouTube' className='opacity-80 hover:opacity-100'><Youtube className='h-5 w-5' /></a>
+              </div>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} className='relative'>
+              <div className='aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl border border-black/10 dark:border-white/10'>
+                <img src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop' alt='Portfolio hero' className='h-full w-full object-cover' />
+              </div>
+              <div className='absolute -bottom-6 -left-6 hidden md:block'>
+                <div className='card shadow-xl'>
+                  <div className='p-4 flex items-center gap-3'>
+                    <Palette className='h-5 w-5' />
+                    <div>
+                      <p className='text-sm font-medium'>Švarus, modernus dizainas</p>
+                      <p className='text-xs text-neutral-500 dark:text-neutral-400'>Paruošta darbams ir užklausoms</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* PROJECTS */}
+        <section id='projects' className='container py-16'>
+          <div className='mb-8 flex items-end justify-between'>
+            <div>
+              <h2 className='text-2xl md:text-3xl font-bold'>Išskirti darbai</h2>
+              <p className='text-neutral-600 dark:text-neutral-400'>Atrinkti projektai – daugiau pavyzdžių pagal užklausą.</p>
+            </div>
+            <a href='#contact' className='text-sm underline-offset-2 hover:underline'>Reikia kažko panašaus?</a>
+          </div>
+          <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+            {PROJECTS.map((p, i) => (
+              <motion.div key={p.title} variants={ITEM_VARIANTS} initial='hidden' whileInView='show' viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i*0.05 }}>
+                <div className='card overflow-hidden'>
+                  <div className='relative'>
+                    <img src={p.cover} alt={p.title} className='aspect-video w-full object-cover transition-transform duration-300 hover:scale-105' />
+                    <div className='absolute inset-0 bg-gradient-to-t from-black/50 to-transparent' />
+                  </div>
+                  <div className='p-5 space-y-1'>
+                    <h3 className='text-lg font-semibold'>{p.title}</h3>
+                    <p className='text-sm text-neutral-500 dark:text-neutral-400'>{p.role}</p>
+                  </div>
+                  <div className='px-5 pb-5'>
+                    <div className='mb-3 flex flex-wrap gap-2'>
+                      {p.tags.map(t => <span key={t} className='rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300'>{t}</span>)}
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <a href={p.link}><button className='btn btn-primary'>Peržiūra</button></a>
+                      <button className='btn'>Case study</button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* SERVICES */}
+        <section id='services' className='border-y border-black/10 dark:border-white/10'>
+          <div className='container py-16'>
+            <div className='mb-8'>
+              <h2 className='text-2xl md:text-3xl font-bold'>Paslaugos</h2>
+              <p className='text-neutral-600 dark:text-neutral-400'>Lankstūs paketai verslui, sporto klubams ir kūrėjams.</p>
+            </div>
+            <div className='grid gap-6 md:grid-cols-3'>
+              {SERVICES.map((s,i) => (
+                <motion.div key={s.name} variants={ITEM_VARIANTS} initial='hidden' whileInView='show' viewport={{ once: true }} transition={{ duration: 0.4, delay: i*0.05 }}>
+                  <div className='card'>
+                    <div className='p-5'>
+                      <div className='mb-2 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10'>{s.icon}</div>
+                      <h3 className='text-lg font-semibold'>{s.name}</h3>
+                      <p className='text-sm text-neutral-500 dark:text-neutral-400'>{s.desc}</p>
+                    </div>
+                    <div className='px-5 pb-5 text-sm text-neutral-600 dark:text-neutral-300'>Kaina {s.from}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ABOUT */}
+        <section id='about' className='container py-16'>
+          <div className='grid md:grid-cols-5 gap-8 items-start'>
+            <div className='md:col-span-3'>
+              <h2 className='text-2xl md:text-3xl font-bold'>Apie mane</h2>
+              <p className='mt-3 text-neutral-600 dark:text-neutral-300'>
+                Esu {PROFILE.name}, kuriantis turinį {PROFILE.location} regione ir už jo ribų. Dirbu su sporto klubais, grožio salonais ir smulkiais
+                verslais – nuo idėjos iki finalinio failo. Man svarbu aiškumas, greitis ir rezultatų matavimas.
+              </p>
+              <ul className='mt-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-300'>
+                <li>• 4K filmavimas, S-Log3/HLG koloritas, švarus garso įrašas</li>
+                <li>• Socialinių tinklų paketai: Reels/TikTok/YouTube Shorts</li>
+                <li>• Produktų foto ir e‑shop vizualai</li>
+                <li>• Projekto planas ir grąžinimo terminai iš anksto</li>
+              </ul>
+            </div>
+            <div className='md:col-span-2'>
+              <div className='card'>
+                <div className='p-5'>
+                  <h3 className='text-lg font-semibold'>Kodėl rinktis mane?</h3>
+                  <p className='text-sm text-neutral-500 dark:text-neutral-400'>Trumpai apie darbo principus</p>
+                </div>
+                <div className='px-5 pb-5 space-y-3 text-sm text-neutral-600 dark:text-neutral-300'>
+                  <div className='flex items-start gap-3'><Sparkles className='mt-0.5 h-4 w-4' /> Aiškus kūrybinis brifas ir skaidri kaina</div>
+                  <div className='flex items-start gap-3'><Rocket className='mt-0.5 h-4 w-4' /> Greitas apsisukimas ir v4/5 pataisų langas</div>
+                  <div className='flex items-start gap-3'><BadgeCheck className='mt-0.5 h-4 w-4' /> Fokusas į KPI: peržiūros, CTR, pardavimai</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section id='contact' className='container py-16'>
+          <div className='mb-8'>
+            <h2 className='text-2xl md:text-3xl font-bold'>Kontaktai</h2>
+            <p className='text-neutral-600 dark:text-neutral-400'>Paprasčiausia – parašyti laišką arba užpildyti formą.</p>
+          </div>
+
+          <div className='grid gap-8 md:grid-cols-5 items-start'>
+            <div className='md:col-span-2 card'>
+              <div className='p-5'>
+                <h3 className='text-lg font-semibold'>{PROFILE.brand}</h3>
+                <p className='text-sm text-neutral-500 dark:text-neutral-400'>Susisiekime dėl idėjos ar komercinio projekto</p>
+              </div>
+              <div className='px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300'>
+                <div className='flex items-center gap-2'><Mail className='h-4 w-4' /> {PROFILE.email}</div>
+                <div className='flex items-center gap-2'><Phone className='h-4 w-4' /> {PROFILE.phone}</div>
+                <div className='flex items-center gap-2'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
+                <div className='flex items-center gap-3 pt-2'>
+                  <a href={PROFILE.socials.instagram} className='underline underline-offset-2'>Instagram</a>
+                  <a href={PROFILE.socials.facebook} className='underline underline-offset-2'>Facebook</a>
+                  <a href={PROFILE.socials.youtube} className='underline underline-offset-2'>YouTube</a>
+                </div>
+              </div>
+            </div>
+
+            <div className='md:col-span-3 card'>
+              <div className='p-5'>
+                <h3 className='text-lg font-semibold'>Trumpa užklausa</h3>
+                <p className='text-sm text-neutral-500 dark:text-neutral-400'>Papasakokite apie projektą – atrašysiu tą pačią dieną.</p>
+              </div>
+              <div className='px-5 pb-5'>
+                <form className='grid gap-4' onSubmit={(e)=>{e.preventDefault(); alert('Ačiū! Forma demonstracinė.')}}>
+                  <div className='grid md:grid-cols-2 gap-4'>
+                    <Input placeholder='Vardas' required />
+                    <Input type='email' placeholder='El. paštas' required />
+                  </div>
+                  <Input placeholder='Tema (pvz., Produktų klipas)' />
+                  <Textarea placeholder='Trumpai apie idėją, formatą, terminą, biudžetą…' rows={5} />
+                  <div className='flex items-center justify-between'>
+                    <div className='text-xs text-neutral-500 dark:text-neutral-400'>Siunčiant sutinkate su privatumo politika.</div>
+                    <Button type='submit'>Siųsti užklausą</Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className='border-t border-black/10 dark:border-white/10'>
+          <div className='container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3'>
+            <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
+            <div className='flex items-center gap-4'>
+              <a href='#hero' className='underline underline-offset-2'>Į viršų</a>
+              <a href={PROFILE.cvUrl} className='underline underline-offset-2'>CV</a>
+              <a href='#' className='underline underline-offset-2'>Privatumo politika</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  )
+}
