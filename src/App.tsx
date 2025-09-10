@@ -175,10 +175,22 @@ export default function App() {
                     <div className='mb-3 flex flex-wrap gap-2'>
                       {p.tags.map(t => <span key={t} className='rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300'>{t}</span>)}
                     </div>
-                    <div className='flex items-center gap-2'>
-                      <a href={p.link}><button className='btn btn-primary'>Peržiūra</button></a>
-                      <button className='btn'>Case study</button>
-                    </div>
+                    <div className="flex items-center gap-2">
+  <a
+    href={p.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
+  >
+    Peržiūra
+  </a>
+  <a
+    href="#"
+    className="px-3 py-1 rounded-lg border border-gray-400 text-gray-300 hover:bg-gray-800 transition"
+  >
+    Case study
+  </a>
+</div>
                   </div>
                 </div>
               </motion.div>
