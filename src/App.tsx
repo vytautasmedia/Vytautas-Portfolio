@@ -90,7 +90,7 @@ const PROJECTS = [
     role: 'Video filmavimas / Dronas / Montavimas',
     cover: '/covers/belaiko.jpg',
     link: 'https://youtube.com/shorts/33CF5wBQIZU', // pakeisk į savo
-    tags: ['Gamta', 'Vestuvės', 'Itališkai', 'Turizmas', 'Reklama'],
+    tags: ['Gamta', 'Vestuvės', 'Itališkai', 'Turizmas'],
   },
   {
     title: 'Mažasis verslas – branding video',
