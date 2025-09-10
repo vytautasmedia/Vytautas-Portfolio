@@ -5,7 +5,7 @@ import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
 import {
-  Camera, Video, BadgeCheck, Mail, Phone, MapPin, Sun, Moon,
+  Camera, Video, BadgeCheck, Mail, MapPin, Sun, Moon,
   Instagram, Facebook, Youtube, Download, Rocket, Sparkles, Palette,
   ArrowRight, ChevronRight
 } from 'lucide-react'
@@ -16,7 +16,6 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '',
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
@@ -79,7 +78,6 @@ const SERVICES = [
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
 
 function openInAppOrWeb(rawUrl: string) {
-  // 1) sargai
   if (!rawUrl || rawUrl === '#') return;
 
   const ua = navigator.userAgent;
@@ -87,13 +85,11 @@ function openInAppOrWeb(rawUrl: string) {
   const isIOS = /iPhone|iPad|iPod/i.test(ua);
   const isMobile = isAndroid || isIOS;
 
-  // Jei ne mobilas – tiesiai atidarom web, be app schemų (kad Safari nepyktų)
   if (!isMobile) {
     window.open(rawUrl, "_blank", "noopener");
     return;
   }
 
-  // Mobiluose – bandome app -> fallback į web
   try {
     const u = new URL(rawUrl);
     const isYT = u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
@@ -108,7 +104,6 @@ function openInAppOrWeb(rawUrl: string) {
         const started = Date.now();
         window.location.href = appLink;
         setTimeout(() => {
-          // jei app neatsidarė – atsarginis web
           if (Date.now() - started < 1500) {
             window.open(rawUrl, "_blank", "noopener");
           }
@@ -120,7 +115,6 @@ function openInAppOrWeb(rawUrl: string) {
     // ignore
   }
 
-  // jei ne YouTube ar nepavyko ištraukti ID – atidaryti web
   window.open(rawUrl, "_blank", "noopener");
 }
 
@@ -160,9 +154,9 @@ export default function App() {
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <h1 className='mt-4 text-4xl md:text-6xl font-bold leading-tight'>{PROFILE.name}</h1>
               <p className='mt-2 text-lg text-neutral-500 dark:text-neutral-400'>{PROFILE.title}</p>
-                <p className='mt-4 text-base text-neutral-600 dark:text-neutral-300'>
-                  Kuriu aiškias, estetiškas ir jausmų kupinas istorijas
-                </p>
+              <p className='mt-4 text-base text-neutral-600 dark:text-neutral-300'>
+                Kuriu aiškias, estetiškas ir jausmų kupinas istorijas
+              </p>
               <p className='mt-2 text-base text-neutral-600 dark:text-neutral-300'>
                 Siūlau kūrybinių idėjų realizaciją pagal jūsų norus
               </p>
@@ -173,6 +167,7 @@ export default function App() {
               <div className='mt-6 flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300'>
                 <div className='flex items-center gap-1'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
                 <div className='flex items-center gap-1'><Mail className='h-4 w-4' /> <a href={`mailto:${PROFILE.email}`} className='underline'>{PROFILE.email}</a></div>
+              </div>
               <div className='mt-4 flex items-center gap-3'>
                 <a href={PROFILE.socials.instagram} target='_blank' rel='noopener noreferrer'><Instagram className='h-5 w-5' /></a>
                 <a href={PROFILE.socials.facebook} target='_blank' rel='noopener noreferrer'><Facebook className='h-5 w-5' /></a>
@@ -316,7 +311,6 @@ export default function App() {
               </div>
               <div className='px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300'>
                 <div className='flex items-center gap-2'><Mail className='h-4 w-4' /> <a href={`mailto:${PROFILE.email}`} className='underline underline-offset-2'>{PROFILE.email}</a></div>
-                <div className='flex items-center gap-2'><Phone className='h-4 w-4' /> <a href={`tel:${PROFILE.phone}`} className='underline underline-offset-2'>{PROFILE.phone}</a></div>
                 <div className='flex items-center gap-2'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
                 <div className='flex items-center gap-3 pt-2'>
                   <a href={PROFILE.socials.instagram} target='_blank' rel='noopener noreferrer' className='underline underline-offset-2'>Instagram</a>
