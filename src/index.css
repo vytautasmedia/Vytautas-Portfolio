@@ -37,3 +37,20 @@
 .input, .textarea {
   @apply w-full rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-white/10 px-3 py-2 text-sm outline-none;
 }
+/* Sklandus scroll visiems <a href="#..."> */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Kad sekcijos neužlįstų po sticky header'iu */
+section {
+  scroll-margin-top: 80px; /* ~ tavo headerio aukštis (reguliuok jei reikia) */
+}
+<button
+  onClick={() => openInAppOrWeb(p.link)}
+  className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
+>
+  Peržiūrėti
+</button>
+
+
