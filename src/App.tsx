@@ -100,11 +100,11 @@ const PROJECTS = [
     tags: ['Purlés kosmetika', 'Profesionalumas'],
   },
   {
-    title: 'Produktų foto serija',
-    role: 'Fotografija / retušas',
-    cover: '/covers/produktai.jpg',
-    link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // pakeisk į savo
-    tags: ['Product', 'E-shop', 'Studio'],
+    title: 'Gydytojas V.Džiugelis - menas būti sveikam',
+    role: 'Video filmavimas / Montavimas / Monetizavimas',
+    cover: '/covers/dziugelis.jpg',
+    link: 'https://youtube.com/shorts/YXkr9E3q6GE', // pakeisk į savo
+    tags: ['Sveikatingumas', 'Reklama', 'Profesionalumas'],
   },
   {
     title: 'Socialinių tinklų klipai',
