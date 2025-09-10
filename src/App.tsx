@@ -25,7 +25,7 @@ const PROJECTS = [
   {
     title: 'Gargždų Banga vs Riteriai',
     role: 'Video produkcija / Reels',
-    cover: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1600&auto=format&fit=crop',
+    cover: 'bangariteriai.jpg',
     tags: ['Sportas', 'Social Media', 'Short form'],
     link: '#',
   },
