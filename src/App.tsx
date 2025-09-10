@@ -9,23 +9,22 @@ import { Camera, Video, BadgeCheck, Mail, Phone, MapPin, Sun, Moon, Instagram, F
 
 const PROFILE = {
   name: 'Vytautas Uselis',
-  brand: 'Vytautas Media',
-  title: 'Videografas • Fotografas • Social Media',
+  brand: 'vytautasmedia',
+  title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
-  email: 'vytautas@example.com',
-  phone: '+370 6xx xxxxx',
+  email: 'vytautasmedia.lt@gmail.com',
   cvUrl: '#',
   socials: {
-    instagram: 'https://instagram.com/',
-    facebook: 'https://facebook.com/',
-    youtube: 'https://youtube.com/',
+    instagram: 'https://www.instagram.com/_vytautasmedia/',
+    facebook: 'https://www.facebook.com/vytautas.uselis06',
+    youtube: 'https://www.youtube.com/@vuselis',
   },
 }
 
 const PROJECTS = [
   {
-    title: 'Gargždų Banga – Mic\'d Up',
-    role: 'Video produkcija / įgarsinimas',
+    title: 'Gargždų Banga vs Riteriai',
+    role: 'Video produkcija / Reels',
     cover: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1600&auto=format&fit=crop',
     tags: ['Sportas', 'Social Media', 'Short form'],
     link: '#',
