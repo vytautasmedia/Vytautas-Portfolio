@@ -78,29 +78,50 @@ const SERVICES = [
 
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
 
-// Bandymas atidaryti YouTube programėlę; jei nepavyksta – atidaro web naujame tabe
 function openInAppOrWeb(rawUrl: string) {
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+  // 1) sargai
+  if (!rawUrl || rawUrl === '#') return;
+
+  const ua = navigator.userAgent;
+  const isAndroid = /Android/i.test(ua);
+  const isIOS = /iPhone|iPad|iPod/i.test(ua);
+  const isMobile = isAndroid || isIOS;
+
+  // Jei ne mobilas – tiesiai atidarom web, be app schemų (kad Safari nepyktų)
+  if (!isMobile) {
+    window.open(rawUrl, "_blank", "noopener");
+    return;
+  }
+
+  // Mobiluose – bandome app -> fallback į web
   try {
-    const u = new URL(rawUrl)
-    const isYT = u.hostname.includes('youtube.com') || u.hostname.includes('youtu.be')
+    const u = new URL(rawUrl);
+    const isYT = u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
     if (isYT) {
-      let id = ''
-      if (u.hostname.includes('youtu.be')) id = u.pathname.slice(1)
-      else if (u.pathname.startsWith('/watch')) id = u.searchParams.get('v') || ''
-      else if (u.pathname.startsWith('/shorts/')) id = u.pathname.split('/')[2] || ''
+      let id = "";
+      if (u.hostname.includes("youtu.be")) id = u.pathname.slice(1);
+      else if (u.pathname.startsWith("/watch")) id = u.searchParams.get("v") || "";
+      else if (u.pathname.startsWith("/shorts/")) id = u.pathname.split("/")[2] || "";
+
       if (id) {
-        const appLink = isIOS ? `youtube://watch?v=${id}` : `vnd.youtube:${id}`
-        const started = Date.now()
-        window.location.href = appLink
+        const appLink = isIOS ? `youtube://watch?v=${id}` : `vnd.youtube:${id}`;
+        const started = Date.now();
+        window.location.href = appLink;
         setTimeout(() => {
-          if (Date.now() - started < 1500) window.open(rawUrl, '_blank', 'noopener')
-        }, 800)
-        return
+          // jei app neatsidarė – atsarginis web
+          if (Date.now() - started < 1500) {
+            window.open(rawUrl, "_blank", "noopener");
+          }
+        }, 800);
+        return;
       }
     }
-  } catch {}
-  window.open(rawUrl, '_blank', 'noopener')
+  } catch {
+    // ignore
+  }
+
+  // jei ne YouTube ar nepavyko ištraukti ID – atidaryti web
+  window.open(rawUrl, "_blank", "noopener");
 }
 
 export default function App() {
