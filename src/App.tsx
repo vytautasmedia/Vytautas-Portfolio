@@ -465,8 +465,10 @@ export default function App() {
             <div className="md:col-span-3">
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
               <p className="mt-3 text-neutral-600 dark:text-neutral-300">
-                Esu {PROFILE.name}, kuriantis turinį {PROFILE.location} regione ir už jo ribų. Dirbu su sporto klubais, grožio salonais ir smulkiais
-                verslais – nuo idėjos iki finalinio failo. Man svarbu aiškumas, greitis ir rezultatų matavimas.
+                Esu {PROFILE.name}, kuriantis turinį Klaipėdoje ir už jos ribų. Kuriu vaizdinį turinį susijusį su įvairiais klientais.
+                Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą finalinio etapo. Man svarbus aiškumas, rezultatas ir klientas.
+                Darbą atlieku greitai ir kokybiškai.
+
               </p>
               <ul className="mt-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
                 <li>• 4K filmavimas, S-Log3/HLG koloritas, švarus garso įrašas</li>
@@ -482,9 +484,9 @@ export default function App() {
                   <p className="text-sm text-neutral-500 dark:text-neutral-400">Trumpai apie darbo principus</p>
                 </div>
                 <div className="px-5 pb-5 space-y-3 text-sm text-neutral-600 dark:text-neutral-300">
-                  <div className="flex items-start gap-3"><Sparkles className="mt-0.5 h-4 w-4" /> Aiškus kūrybinis brifas ir skaidri kaina</div>
-                  <div className="flex items-start gap-3"><Rocket className="mt-0.5 h-4 w-4" /> Greitas apsisukimas ir v4/5 pataisų langas</div>
-                  <div className="flex items-start gap-3"><BadgeCheck className="mt-0.5 h-4 w-4" /> Fokusas į KPI: peržiūros, CTR, pardavimai</div>
+                  <div className="flex items-start gap-3"><Sparkles className="mt-0.5 h-4 w-4" /> Aiškus kūrybinis sprendimas ir logiška kaina</div>
+                  <div className="flex items-start gap-3"><Rocket className="mt-0.5 h-4 w-4" /> Kokybės užtvirtinimas ir tenkinantis rezultatas</div>
+                  <div className="flex items-start gap-3"><BadgeCheck className="mt-0.5 h-4 w-4" /> Fokusas į peržiūras, pardavimus, susidomėjimą</div>
                 </div>
               </div>
             </div>
