@@ -63,7 +63,7 @@ const PROFILE = {
   },
   // Po „Kodėl rinktis mane?“ mažas tekstas – laisvai redaguok
   clientsNote:
-    '-------- ',
+    '--------',
 }
 
 /* ============================
