@@ -186,17 +186,6 @@ export default function App() {
               <div className='aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl border border-black/10 dark:border-white/10'>
                 <img src='/covers/vmlogo.jpg' alt='Portfolio hero' className='h-full w-full object-cover' />
               </div>
-              <div className='absolute -bottom-6 -left-6 hidden md:block'>
-                <div className='card shadow-xl'>
-                  <div className='p-4 flex items-center gap-3'>
-                    <Palette className='h-5 w-5' />
-                    <div>
-                      <p className='text-sm font-medium'>Švarus, modernus dizainas</p>
-                      <p className='text-xs text-neutral-500 dark:text-neutral-400'>Paruošta darbams ir užklausoms</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </div>
         </section>
