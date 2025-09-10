@@ -5,11 +5,14 @@ import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
 import {
-  Camera, Video, BadgeCheck, Mail, MapPin, Sun, Moon,
-  Instagram, Facebook, Youtube, Download, Rocket, Sparkles, Palette,
+  Camera, Video as VideoIcon, BadgeCheck, Mail, MapPin, Sun, Moon,
+  Instagram, Facebook, Youtube, Rocket, Sparkles,
   ArrowRight, ChevronRight
 } from 'lucide-react'
 
+/**
+ * PAGRINDINĖ INFO
+ */
 const PROFILE = {
   name: 'Vytautas Uselis',
   brand: 'vytautasmedia',
@@ -24,102 +27,108 @@ const PROFILE = {
   },
 }
 
+/**
+ * PROJEKTAI
+ * -> cover: viršelio nuotrauka (public/covers/...)
+ * -> video: vietinis video failas (public/videos/...)
+ */
 const PROJECTS = [
   {
     title: 'Gargždų Banga vs Riteriai',
     role: 'Video filmavimas / Montavimas / Reels',
     cover: '/covers/bangariteriai.jpg',
+    video: '/videos/bangariteriai.mp4',
     tags: ['Sportas', 'Social Media', 'Reels'],
-    link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
   },
   {
     title: 'Lithuania | Gargždai',
     role: 'Filmavimas / Dronas / Montažas',
     cover: '/covers/grg.jpg',
+    video: '/videos/gargzdai.mp4',
     tags: ['Lietuva', 'Gamta', 'Dronas'],
-    link: 'https://www.youtube.com/watch?v=IqY5m8-AQcg',
   },
   {
     title: 'Padelio turnyras – aftermovie',
     role: 'Operatorius / montažas',
     cover: '/covers/padelis.jpg',
+    video: '/videos/padelis.mp4',
     tags: ['Sportas', 'Event', 'Storytelling'],
-    link: '#',
   },
   {
     title: 'Mažasis verslas – branding video',
     role: 'Idėja / koloritas / garsas',
     cover: '/covers/branding.jpg',
+    video: '/videos/branding.mp4',
     tags: ['Branding', 'Story', 'YouTube'],
-    link: '#',
   },
   {
     title: 'Produktų foto serija',
     role: 'Fotografija / retušas',
     cover: '/covers/produktai.jpg',
+    video: '/videos/produktai.mp4',
     tags: ['Product', 'E-shop', 'Studio'],
-    link: '#',
   },
   {
     title: 'Socialinių tinklų klipai',
     role: 'Trumpi formatai / subtitles',
     cover: '/covers/social.jpg',
+    video: '/videos/social.mp4',
     tags: ['Reels/TikTok', 'Kampanijos', 'KPI'],
-    link: '#',
   },
 ]
 
+/**
+ * PASLAUGOS
+ */
 const SERVICES = [
-  { icon: <Video className='h-6 w-6' />, name: 'Video produkcija', desc: 'Reklaminiai klipai, aftermovie, interviu, mic\'d up, sporto turinys.', from: 'nuo 250 €' },
+  { icon: <VideoIcon className='h-6 w-6' />, name: 'Video produkcija', desc: 'Reklaminiai klipai, aftermovie, interviu, mic\'d up, sporto turinys.', from: 'nuo 250 €' },
   { icon: <Camera className='h-6 w-6' />, name: 'Fotografija', desc: 'Produktų, portretų, renginių ir social media fotosesijos.', from: 'nuo 120 €' },
   { icon: <Rocket className='h-6 w-6' />, name: 'Social Media / Ads', desc: 'Kūryba, filmukai, subtitrai, reklamos maketai, įrašų kalendorius.', from: 'pagal poreikį' },
 ]
 
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
 
-function openInAppOrWeb(rawUrl: string) {
-  if (!rawUrl || rawUrl === '#') return;
-
-  const ua = navigator.userAgent;
-  const isAndroid = /Android/i.test(ua);
-  const isIOS = /iPhone|iPad|iPod/i.test(ua);
-  const isMobile = isAndroid || isIOS;
-
-  if (!isMobile) {
-    window.open(rawUrl, "_blank", "noopener");
-    return;
-  }
-
-  try {
-    const u = new URL(rawUrl);
-    const isYT = u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
-    if (isYT) {
-      let id = "";
-      if (u.hostname.includes("youtu.be")) id = u.pathname.slice(1);
-      else if (u.pathname.startsWith("/watch")) id = u.searchParams.get("v") || "";
-      else if (u.pathname.startsWith("/shorts/")) id = u.pathname.split("/")[2] || "";
-
-      if (id) {
-        const appLink = isIOS ? `youtube://watch?v=${id}` : `vnd.youtube:${id}`;
-        const started = Date.now();
-        window.location.href = appLink;
-        setTimeout(() => {
-          if (Date.now() - started < 1500) {
-            window.open(rawUrl, "_blank", "noopener");
-          }
-        }, 800);
-        return;
-      }
-    }
-  } catch {
-    // ignore
-  }
-
-  window.open(rawUrl, "_blank", "noopener");
+/**
+ * PAPRASTAS VIDEO MODALAS
+ */
+function VideoModal({
+  src,
+  title,
+  poster,
+  onClose,
+}: {
+  src: string
+  title: string
+  poster?: string
+  onClose: () => void
+}) {
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4">
+      <div className="relative w-full max-w-4xl">
+        <button
+          onClick={onClose}
+          className="absolute -top-10 right-0 rounded-lg border border-white/20 px-3 py-1 text-sm text-white hover:bg-white/10"
+        >
+          Užverti ✕
+        </button>
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
+          <video
+            src={src}
+            poster={poster}
+            controls
+            playsInline
+            className="w-full"
+          />
+          <div className="px-4 py-3 text-sm text-neutral-200">{title}</div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default function App() {
   const [dark, setDark] = useState(true)
+  const [player, setPlayer] = useState<null | { src: string; title: string; poster?: string }>(null)
 
   return (
     <div className={dark ? 'dark' : ''}>
@@ -161,19 +170,18 @@ export default function App() {
                 Siūlau kūrybinių idėjų realizaciją pagal jūsų norus
               </p>
               <div className='mt-6 flex flex-wrap items-center gap-3'>
-  <a href='#projects'>
-    <button className='btn btn-primary'>
-      Peržiūrėti darbus <ArrowRight className='ml-1 h-4 w-4' />
-    </button>
-  </a>
-
-  <a href='#contact'>
-    <button className='btn'>
-      <Mail className='mr-2 h-4 w-4' />
-      Susisiekite su manimi
-    </button>
-  </a>
-</div>
+                <a href='#projects'>
+                  <button className='btn btn-primary'>
+                    Peržiūrėti darbus <ArrowRight className='ml-1 h-4 w-4' />
+                  </button>
+                </a>
+                <a href='#contact'>
+                  <button className='btn'>
+                    <Mail className='mr-2 h-4 w-4' />
+                    Susisiekite su manimi
+                  </button>
+                </a>
+              </div>
               <div className='mt-6 flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300'>
                 <div className='flex items-center gap-1'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
                 <div className='flex items-center gap-1'><Mail className='h-4 w-4' /> <a href={`mailto:${PROFILE.email}`} className='underline'>{PROFILE.email}</a></div>
@@ -198,7 +206,7 @@ export default function App() {
           <div className='mb-8 flex items-end justify-between'>
             <div>
               <h2 className='text-2xl md:text-3xl font-bold'>Keli iš darbų</h2>
-              <p className='text-neutral-600 dark:text-neutral-400'>Su meile, atkaklumu ir siekio geriausio</p>
+              <p className='text-neutral-600 dark:text-neutral-400'>Su meile, atkaklumu ir siekiu geriausio.</p>
             </div>
             <a href='#contact' className='text-sm underline-offset-2 hover:underline'>Domina kažkas panašaus ir jus?</a>
           </div>
@@ -232,7 +240,7 @@ export default function App() {
                     </div>
                     <div className='flex items-center gap-2'>
                       <button
-                        onClick={() => openInAppOrWeb(p.link)}
+                        onClick={() => setPlayer({ src: p.video, title: p.title, poster: p.cover })}
                         className='px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition'
                       >
                         Peržiūrėti
@@ -361,6 +369,16 @@ export default function App() {
             </div>
           </div>
         </footer>
+
+        {/* VIDEO MODALAS */}
+        {player && (
+          <VideoModal
+            src={player.src}
+            title={player.title}
+            poster={player.poster}
+            onClose={() => setPlayer(null)}
+          />
+        )}
       </div>
     </div>
   )
