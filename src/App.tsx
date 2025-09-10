@@ -469,8 +469,13 @@ export default function App() {
                 Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą finalinio etapo. Man svarbus aiškumas, rezultatas ir klientas.
                 Darbą atlieku greitai ir kokybiškai.
 
-              <p className="mt-6 text-lg font-semibold text-neutral-800 dark:text-neutral-200">
-  Turi idėją, bet nežinai kaip ją įgyvendinti? Parašyk – kartu sukursime viziją.
+              <p className="mt-6 text-xl font-semibold">
+  <span className="bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent">
+    Turi idėją, bet nežinai kaip ją įgyvendinti?
+  </span>
+  <span className="block text-neutral-800 dark:text-neutral-200">
+    Parašyk – kartu sukursime ką nors nerealaus.
+  </span>
 </p>
             </div>
             <div className="md:col-span-2">
