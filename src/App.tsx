@@ -16,7 +16,7 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '+37061444401',
+  phone: '',
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
@@ -173,8 +173,6 @@ export default function App() {
               <div className='mt-6 flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300'>
                 <div className='flex items-center gap-1'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
                 <div className='flex items-center gap-1'><Mail className='h-4 w-4' /> <a href={`mailto:${PROFILE.email}`} className='underline'>{PROFILE.email}</a></div>
-                <div className='flex items-center gap-1'><Phone className='h-4 w-4' /> <a href={`tel:${PROFILE.phone}`} className='underline'>{PROFILE.phone}</a></div>
-              </div>
               <div className='mt-4 flex items-center gap-3'>
                 <a href={PROFILE.socials.instagram} target='_blank' rel='noopener noreferrer'><Instagram className='h-5 w-5' /></a>
                 <a href={PROFILE.socials.facebook} target='_blank' rel='noopener noreferrer'><Facebook className='h-5 w-5' /></a>
