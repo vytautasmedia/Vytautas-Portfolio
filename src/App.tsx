@@ -380,7 +380,7 @@ export default function App() {
           <div className="mb-6">
             <h3 className="text-xl md:text-2xl font-semibold">Darbai prie kurių prisidėjau</h3>
             <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              Kitų žmonių filmuotos vaizdinės medžiagos montavimas
+              Partnerių filmuotos vaizdinės medžiagos montavimas
             </p>
           </div>
 
