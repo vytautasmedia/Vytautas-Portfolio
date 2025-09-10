@@ -161,9 +161,19 @@ export default function App() {
                 Siūlau kūrybinių idėjų realizaciją pagal jūsų norus
               </p>
               <div className='mt-6 flex flex-wrap items-center gap-3'>
-                <a href='#projects'><button className='btn btn-primary'>Peržiūrėti darbus <ArrowRight className='ml-1 h-4 w-4' /></button></a>
-                <a href={PROFILE.cvUrl}><button className='btn'><Download className='mr-2 h-4 w-4' />Atsisiųsti CV</button></a>
-              </div>
+  <a href='#projects'>
+    <button className='btn btn-primary'>
+      Peržiūrėti darbus <ArrowRight className='ml-1 h-4 w-4' />
+    </button>
+  </a>
+
+  <a href='#contact'>
+    <button className='btn'>
+      <Mail className='mr-2 h-4 w-4' />
+      Susisiekite su manimi
+    </button>
+  </a>
+</div>
               <div className='mt-6 flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300'>
                 <div className='flex items-center gap-1'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
                 <div className='flex items-center gap-1'><Mail className='h-4 w-4' /> <a href={`mailto:${PROFILE.email}`} className='underline'>{PROFILE.email}</a></div>
