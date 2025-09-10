@@ -270,7 +270,7 @@ export default function App() {
               <h1 className="mt-4 text-4xl md:text-6xl font-bold leading-tight">{PROFILE.name}</h1>
               <p className="mt-2 text-lg text-neutral-500 dark:text-neutral-400">{PROFILE.title}</p>
               <p className="mt-4 text-base text-neutral-600 dark:text-neutral-300">Kuriu aiškias, estetiškas ir jausmų kupinas istorijas</p>
-              <p className="mt-2 text-base text-neutral-600 dark:text-neutral-300">Siūlau kūrybinių idėjų realizaciją pagal jūsų norus</p>
+              <p className="mt-2 text-base text-neutral-600 dark:text-neutral-300">Siūlau kūrybinių idėjų realizaciją pagal Jūsų norus</p>
 
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <a href="#projects">
