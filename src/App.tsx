@@ -93,11 +93,11 @@ const PROJECTS = [
     tags: ['Gamta', 'Vestuvės', 'Itališkai', 'Turizmas'],
   },
   {
-    title: 'Mažasis verslas – branding video',
-    role: 'Idėja / koloritas / garsas',
-    cover: '/covers/branding.jpg',
-    link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // pakeisk į savo
-    tags: ['Branding', 'Story', 'YouTube'],
+    title: 'Purlés profesionalų kosmetikos linija',
+    role: 'Video filmavimas / Montavimas / Produktų reklama',
+    cover: '/covers/purles.jpg',
+    link: 'https://youtube.com/shorts/VNsLseKWxC0', // pakeisk į savo
+    tags: ['Purlés kosmetika', 'Profesionalumas'],
   },
   {
     title: 'Produktų foto serija',
