@@ -46,11 +46,4 @@ html {
 section {
   scroll-margin-top: 80px; /* ~ tavo headerio aukštis (reguliuok jei reikia) */
 }
-<button
-  onClick={() => openInAppOrWeb(p.link)}
-  className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
->
-  Peržiūrėti
-</button>
-
 
