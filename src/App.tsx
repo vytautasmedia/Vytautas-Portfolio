@@ -4,7 +4,6 @@ import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
 import {
-  Camera,
   Video as VideoIcon,
   BadgeCheck,
   Mail,
@@ -139,7 +138,7 @@ const CONTRIBUTED = [
 ]
 
 /* ============================
-   Paslaugos (vienodas aukštis + ženklelis „Kaina: pagal poreikį“)
+   Paslaugos
    ============================ */
 const SERVICES = [
   {
@@ -155,21 +154,13 @@ const SERVICES = [
   {
     icon: <Monitor className="h-6 w-6" />,
     name: 'Video montavimas',
-    bullets: [
-      'Jūsų nufilmuotos medžiagos montažas',
-      'Spalvų korekcija, Garsas',
-      'Subtitrai',
-    ],
+    bullets: ['Jūsų nufilmuotos medžiagos montažas', 'Spalvų korekcija, Garsas', 'Subtitrai'],
     price: 'Kaina pagal susitarimą',
   },
   {
     icon: <Rocket className="h-6 w-6" />,
     name: 'Drono paslaugos',
-    bullets: [
-      'Filmavimas iš oro (4K)',
-      'Renginiai, NT',
-      'Sportas',
-    ],
+    bullets: ['Filmavimas iš oro (4K)', 'Renginiai, NT', 'Sportas'],
     price: 'Kaina pagal susitarimą',
   },
 ]
@@ -193,17 +184,22 @@ function VideoModal({
   onClose: () => void
 }) {
   const ytId = isYoutubeUrl(url) ? getYouTubeId(url) : null
-  const embed = ytId ? `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1&playsinline=1` : null
+  const embed = ytId
+    ? `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`
+    : null
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
+      onClick={onClose}
+    >
       <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
           className="absolute -top-10 right-0 rounded-lg border border-white/20 px-3 py-1 text-sm text-white hover:bg-white/10"
         >
           Užverti ✕
-        </button>
+          </button>
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
           <div className="aspect-video w-full">
             {embed ? (
@@ -211,7 +207,7 @@ function VideoModal({
                 src={embed}
                 className="w-full h-full"
                 title={title}
-                allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+                allow="autoplay; encrypted-media; picture-in-picture"
                 allowFullScreen
               />
             ) : (
@@ -379,9 +375,7 @@ export default function App() {
         <section className="container py-12">
           <div className="mb-6">
             <h3 className="text-xl md:text-2xl font-semibold">Darbai prie kurių prisidėjau</h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">
-              Partnerių filmuotos vaizdinės medžiagos montavimas
-            </p>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">Partnerių filmuotos vaizdinės medžiagos montavimas</p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -417,9 +411,7 @@ export default function App() {
           <div className="container py-16">
             <div className="mb-8">
               <h2 className="text-2xl md:text-3xl font-bold">Paslaugos</h2>
-              <p className="text-neutral-600 dark:text-neutral-400">
-                Lanksčūs paketai verslui, sporto klubams ir kūrėjams.
-              </p>
+              <p className="text-neutral-600 dark:text-neutral-400">Lanksčūs paketai verslui, sporto klubams ir kūrėjams.</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-3">
@@ -464,20 +456,25 @@ export default function App() {
           <div className="grid md:grid-cols-5 gap-8 items-start">
             <div className="md:col-span-3">
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
+
+              {/* Aprašymas */}
               <p className="mt-3 text-neutral-600 dark:text-neutral-300">
                 Esu {PROFILE.name}, kuriantis turinį Klaipėdoje ir už jos ribų. Kuriu vaizdinį turinį susijusį su įvairiais klientais.
-                Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą finalinio etapo. Man svarbus aiškumas, rezultatas ir klientas.
+                Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą iki finalinio etapo. Man svarbus aiškumas, rezultatas ir klientas.
                 Darbą atlieku greitai ir kokybiškai.
+              </p>
 
-              <p className="mt-6 text-xl font-semibold">
-  <span className="bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent">
-    Turi idėją, bet nežinai kaip ją įgyvendinti?
-  </span>
-  <span className="block text-neutral-800 dark:text-neutral-200">
-    Susisiek – kartu sukursime ką nors nerealaus.
-  </span>
-</p>
+              {/* Akcentinis CTA */}
+              <div className="mt-6 text-xl font-semibold">
+                <span className="bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent">
+                  Turi idėją, bet nežinai kaip ją įgyvendinti?
+                </span>
+                <span className="block text-neutral-800 dark:text-neutral-200">
+                  Susisiek – kartu sukursime ką nors nerealaus.
+                </span>
+              </div>
             </div>
+
             <div className="md:col-span-2">
               <div className="card">
                 <div className="p-5">
