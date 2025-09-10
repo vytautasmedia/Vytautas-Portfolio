@@ -97,7 +97,7 @@ const PROJECTS = [
     role: 'Video filmavimas / Montavimas / Produktų reklama',
     cover: '/covers/purles.jpg',
     link: 'https://youtube.com/shorts/VNsLseKWxC0', // pakeisk į savo
-    tags: ['Purlés kosmetika', 'Profesionalumas'],
+    tags: ['Purlés kosmetika', 'Profesionalumas', 'Reklama'],
   },
   {
     title: 'Gydytojas V.Džiugelis - menas būti sveikam',
