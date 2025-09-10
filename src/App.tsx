@@ -442,7 +442,6 @@ export default function App() {
           <div className="container py-16">
             <div className="mb-8">
               <h2 className="text-2xl md:text-3xl font-bold">Paslaugos</h2>
-              <p className="text-neutral-600 dark:text-neutral-400">Lanksčūs paketai verslui, sporto klubams ir kūrėjams.</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-3">
