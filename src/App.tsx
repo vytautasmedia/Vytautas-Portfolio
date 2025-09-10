@@ -21,17 +21,13 @@ import {
 } from 'lucide-react'
 
 /* ============================
-   Pagalbinės funkcijos video
+   Pagalbinės funkcijos (YouTube)
    ============================ */
 
 function getYouTubeId(url: string): string | null {
   try {
     const u = new URL(url)
-    // youtu.be/VIDEO
-    if (u.hostname.includes('youtu.be')) {
-      return u.pathname.slice(1) || null
-    }
-    // youtube.com/...
+    if (u.hostname.includes('youtu.be')) return u.pathname.slice(1) || null
     if (u.hostname.includes('youtube.com')) {
       if (u.pathname.startsWith('/watch')) return u.searchParams.get('v')
       if (u.pathname.startsWith('/shorts/')) return u.pathname.split('/')[2] || null
@@ -42,11 +38,7 @@ function getYouTubeId(url: string): string | null {
     return null
   }
 }
-
-function isYoutubeUrl(url: string | undefined) {
-  if (!url) return false
-  return !!getYouTubeId(url)
-}
+const isYoutubeUrl = (url?: string) => !!(url && getYouTubeId(url))
 
 /* ============================
    Pagrindinė informacija
@@ -67,10 +59,9 @@ const PROFILE = {
 }
 
 /* ============================
-   Projektai (YouTube nuorodos)
+   Projektai (viršutinė trijulė – spalvoti)
    ============================ */
-
-const PROJECTS = [
+const PROJECTS_TOP = [
   {
     title: 'Gargždų Banga vs Riteriai',
     role: 'Video filmavimas / Montavimas',
@@ -86,39 +77,71 @@ const PROJECTS = [
     tags: ['Lietuva', 'Gamta', 'Kraštovaizdis'],
   },
   {
+    title: 'Gargždų Banga - Dažasvydis',
+    role: 'Video filmavimas / Montavimas / Reklama',
+    cover: '/covers/banga.jpg',
+    link: 'https://youtube.com/shorts/nhFanEVn2zQ',
+    tags: ['Contribee', 'Sportas', 'Dažasvydis'],
+  },
+]
+
+/* ============================
+   Projektai (apatinė trijulė – „balti“)
+   ============================ */
+const PROJECTS_BOTTOM = [
+  {
     title: 'Belaiko itališkos vestuvės',
     role: 'Video filmavimas / Dronas / Montavimas',
     cover: '/covers/belaiko.jpg',
-    link: 'https://youtube.com/shorts/33CF5wBQIZU', // pakeisk į savo
+    link: 'https://youtube.com/shorts/33CF5wBQIZU',
     tags: ['Gamta', 'Vestuvės', 'Itališkai', 'Turizmas'],
   },
   {
     title: 'Purlés profesionalų kosmetikos linija',
     role: 'Video filmavimas / Montavimas / Produktų reklama',
     cover: '/covers/purles.jpg',
-    link: 'https://youtube.com/shorts/VNsLseKWxC0', // pakeisk į savo
+    link: 'https://youtube.com/shorts/VNsLseKWxC0',
     tags: ['Purlés kosmetika', 'Profesionalumas', 'Reklama'],
   },
   {
     title: 'Gydytojas V.Džiugelis - menas būti sveikam',
     role: 'Video filmavimas / Montavimas / Subtitrai',
     cover: '/covers/dziugelis.jpg',
-    link: 'https://youtube.com/shorts/YXkr9E3q6GE', // pakeisk į savo
+    link: 'https://youtube.com/shorts/YXkr9E3q6GE',
     tags: ['Sveikatingumas', 'Reklama', 'Profesionalumas'],
   },
+]
+
+/* ============================
+   „Darbai prie kurių prisidėjau“
+   ============================ */
+const CONTRIBUTED = [
   {
-    title: 'Gargždų Banga - Dažasvydis',
-    role: 'Video filmavimas / Montavimas / Reklama',
+    title: 'Spotas #1',
+    role: 'Montavimas',
+    cover: '/covers/bangariteriai.jpg',
+    link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
+    tags: ['Spotas', 'Montavimas'],
+  },
+  {
+    title: 'Spotas #2',
+    role: 'Montavimas',
+    cover: '/covers/grg.jpg',
+    link: 'https://www.youtube.com/watch?v=IqY5m8-AQcg',
+    tags: ['Spotas', 'Montavimas'],
+  },
+  {
+    title: 'Spotas #3',
+    role: 'Montavimas',
     cover: '/covers/banga.jpg',
-    link: 'https://youtube.com/shorts/nhFanEVn2zQ', // pakeisk į savo
-    tags: ['Contribee', 'Sportas', 'Dažasvydis'],
+    link: 'https://youtube.com/shorts/nhFanEVn2zQ',
+    tags: ['Spotas', 'Montavimas'],
   },
 ]
 
 /* ============================
    Paslaugos
    ============================ */
-
 const SERVICES = [
   {
     icon: <VideoIcon className='h-6 w-6' />,
@@ -133,14 +156,9 @@ const SERVICES = [
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
 
 /* ============================
-   Video modalas (YouTube arba MP4)
+   Video modalas (YouTube embed)
    ============================ */
-
-type PlayerState = {
-  url: string
-  title: string
-  poster?: string
-} | null
+type PlayerState = { url: string; title: string; poster?: string } | null
 
 function VideoModal({
   url,
@@ -157,10 +175,7 @@ function VideoModal({
   const embed = ytId ? `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1&playsinline=1` : null
 
   return (
-    <div
-      className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-sm flex items-center justify-center p-4" onClick={onClose}>
       <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
         <button
           onClick={onClose}
@@ -168,7 +183,6 @@ function VideoModal({
         >
           Užverti ✕
         </button>
-
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
           <div className="aspect-video w-full">
             {embed ? (
@@ -193,7 +207,6 @@ function VideoModal({
 /* ============================
    App
    ============================ */
-
 export default function App() {
   const [dark, setDark] = useState(true)
   const [player, setPlayer] = useState<PlayerState>(null)
@@ -211,18 +224,10 @@ export default function App() {
               <span>{PROFILE.brand}</span>
             </a>
             <nav className="hidden md:flex items-center gap-6 text-sm">
-              <a href="#projects" className="hover:underline">
-                Darbai
-              </a>
-              <a href="#services" className="hover:underline">
-                Paslaugos
-              </a>
-              <a href="#about" className="hover:underline">
-                Apie
-              </a>
-              <a href="#contact" className="hover:underline">
-                Kontaktai
-              </a>
+              <a href="#projects" className="hover:underline">Darbai</a>
+              <a href="#services" className="hover:underline">Paslaugos</a>
+              <a href="#about" className="hover:underline">Apie</a>
+              <a href="#contact" className="hover:underline">Kontaktai</a>
             </nav>
             <div className="flex items-center gap-2">
               <button aria-label="Perjungti temą" onClick={() => setDark(!dark)} className="btn">
@@ -261,27 +266,16 @@ export default function App() {
               </div>
 
               <div className="mt-6 flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300">
+                <div className="flex items-center gap-1"><MapPin className="h-4 w-4" /> {PROFILE.location}</div>
                 <div className="flex items-center gap-1">
-                  <MapPin className="h-4 w-4" /> {PROFILE.location}
-                </div>
-                <div className="flex items-center gap-1">
-                  <Mail className="h-4 w-4" />{' '}
-                  <a href={`mailto:${PROFILE.email}`} className="underline">
-                    {PROFILE.email}
-                  </a>
+                  <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline">{PROFILE.email}</a>
                 </div>
               </div>
 
               <div className="mt-4 flex items-center gap-3">
-                <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer">
-                  <Instagram className="h-5 w-5" />
-                </a>
-                <a href={PROFILE.socials.facebook} target="_blank" rel="noopener noreferrer">
-                  <Facebook className="h-5 w-5" />
-                </a>
-                <a href={PROFILE.socials.youtube} target="_blank" rel="noopener noreferrer">
-                  <Youtube className="h-5 w-5" />
-                </a>
+                <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer"><Instagram className="h-5 w-5" /></a>
+                <a href={PROFILE.socials.facebook} target="_blank" rel="noopener noreferrer"><Facebook className="h-5 w-5" /></a>
+                <a href={PROFILE.socials.youtube} target="_blank" rel="noopener noreferrer"><Youtube className="h-5 w-5" /></a>
               </div>
             </motion.div>
 
@@ -300,13 +294,12 @@ export default function App() {
               <h2 className="text-2xl md:text-3xl font-bold">Keli iš darbų</h2>
               <p className="text-neutral-600 dark:text-neutral-400">Su meile, atkaklumu ir siekiu geriausio.</p>
             </div>
-            <a href="#contact" className="text-sm underline-offset-2 hover:underline">
-              Domina kažkas panašaus ir jus?
-            </a>
+            <a href="#contact" className="text-sm underline-offset-2 hover:underline">Domina kažkas panašaus ir jus?</a>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {PROJECTS.map((p, i) => (
+          {/* Viršutiniai 3 (spalvoti) */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
+            {PROJECTS_TOP.map((p, i) => (
               <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
                 <div className="card overflow-hidden">
                   <div className="relative">
@@ -319,19 +312,75 @@ export default function App() {
                   </div>
                   <div className="px-5 pb-5">
                     <div className="mb-3 flex flex-wrap gap-2">
-                      {p.tags.map((t) => (
-                        <span key={t} className="rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300">
-                          {t}
-                        </span>
+                      {p.tags.map(t => (
+                        <span key={t} className="rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300">{t}</span>
                       ))}
                     </div>
                     <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => setPlayer({ url: p.link, title: p.title, poster: p.cover })}
-                        className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
-                      >
-                        Peržiūrėti
-                      </button>
+                      <button onClick={() => setPlayer({ url: p.link, title: p.title, poster: p.cover })} className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition">Peržiūrėti</button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Apatiniai 3 („balti“) */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {PROJECTS_BOTTOM.map((p, i) => (
+              <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
+                <div className="card overflow-hidden">
+                  <div className="relative">
+                    <img src={p.cover} alt={p.title} className="aspect-video w-full object-cover transition-transform duration-300 hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  </div>
+                  <div className="p-5 space-y-1">
+                    <h3 className="text-lg font-semibold">{p.title}</h3>
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400">{p.role}</p>
+                  </div>
+                  <div className="px-5 pb-5">
+                    <div className="mb-3 flex flex-wrap gap-2">
+                      {p.tags.map(t => (
+                        <span key={t} className="rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300">{t}</span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => setPlayer({ url: p.link, title: p.title, poster: p.cover })} className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition">Peržiūrėti</button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* DARBAI PRIE KURIŲ PRISIDĖJAU */}
+        <section className="container py-12">
+          <div className="mb-6">
+            <h3 className="text-xl md:text-2xl font-semibold">Darbai prie kurių prisidėjau</h3>
+            <p className="text-sm text-neutral-600 dark:text-neutral-400">montuodamas gautą medžiagą</p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {CONTRIBUTED.map((p, i) => (
+              <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
+                <div className="card overflow-hidden">
+                  <div className="relative">
+                    <img src={p.cover} alt={p.title} className="aspect-video w-full object-cover transition-transform duration-300 hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  </div>
+                  <div className="p-5 space-y-1">
+                    <h3 className="text-lg font-semibold">{p.title}</h3>
+                    <p className="text-sm text-neutral-500 dark:text-neutral-400">{p.role}</p>
+                  </div>
+                  <div className="px-5 pb-5">
+                    <div className="mb-3 flex flex-wrap gap-2">
+                      {p.tags.map(t => (
+                        <span key={t} className="rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300">{t}</span>
+                      ))}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => setPlayer({ url: p.link, title: p.title, poster: p.cover })} className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition">Peržiūrėti</button>
                     </div>
                   </div>
                 </div>
@@ -370,8 +419,8 @@ export default function App() {
             <div className="md:col-span-3">
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
               <p className="mt-3 text-neutral-600 dark:text-neutral-300">
-                Esu {PROFILE.name}, kuriantis turinį {PROFILE.location} regione ir už jo ribų. Dirbu su sporto klubais, grožio salonais ir smulkiais verslais – nuo idėjos iki finalinio failo. Man
-                svarbu aiškumas, greitis ir rezultatų matavimas.
+                Esu {PROFILE.name}, kuriantis turinį {PROFILE.location} regione ir už jo ribų. Dirbu su sporto klubais, grožio salonais ir smulkiais
+                verslais – nuo idėjos iki finalinio failo. Man svarbu aiškumas, greitis ir rezultatų matavimas.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
                 <li>• 4K filmavimas, S-Log3/HLG koloritas, švarus garso įrašas</li>
@@ -387,15 +436,9 @@ export default function App() {
                   <p className="text-sm text-neutral-500 dark:text-neutral-400">Trumpai apie darbo principus</p>
                 </div>
                 <div className="px-5 pb-5 space-y-3 text-sm text-neutral-600 dark:text-neutral-300">
-                  <div className="flex items-start gap-3">
-                    <Sparkles className="mt-0.5 h-4 w-4" /> Aiškus kūrybinis brifas ir skaidri kaina
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <Rocket className="mt-0.5 h-4 w-4" /> Greitas apsisukimas ir v4/5 pataisų langas
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <BadgeCheck className="mt-0.5 h-4 w-4" /> Fokusas į KPI: peržiūros, CTR, pardavimai
-                  </div>
+                  <div className="flex items-start gap-3"><Sparkles className="mt-0.5 h-4 w-4" /> Aiškus kūrybinis brifas ir skaidri kaina</div>
+                  <div className="flex items-start gap-3"><Rocket className="mt-0.5 h-4 w-4" /> Greitas apsisukimas ir v4/5 pataisų langas</div>
+                  <div className="flex items-start gap-3"><BadgeCheck className="mt-0.5 h-4 w-4" /> Fokusas į KPI: peržiūros, CTR, pardavimai</div>
                 </div>
               </div>
             </div>
@@ -417,23 +460,13 @@ export default function App() {
               </div>
               <div className="px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline underline-offset-2">
-                    {PROFILE.email}
-                  </a>
+                  <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline underline-offset-2">{PROFILE.email}</a>
                 </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4" /> {PROFILE.location}
-                </div>
+                <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> {PROFILE.location}</div>
                 <div className="flex items-center gap-3 pt-2">
-                  <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
-                    Instagram
-                  </a>
-                  <a href={PROFILE.socials.facebook} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
-                    Facebook
-                  </a>
-                  <a href={PROFILE.socials.youtube} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">
-                    YouTube
-                  </a>
+                  <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Instagram</a>
+                  <a href={PROFILE.socials.facebook} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Facebook</a>
+                  <a href={PROFILE.socials.youtube} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">YouTube</a>
                 </div>
               </div>
             </div>
@@ -472,15 +505,9 @@ export default function App() {
           <div className="container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3">
             <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
             <div className="flex items-center gap-4">
-              <a href="#hero" className="underline underline-offset-2">
-                Į viršų
-              </a>
-              <a href={PROFILE.cvUrl} className="underline underline-offset-2">
-                CV
-              </a>
-              <a href="#" className="underline underline-offset-2">
-                Privatumo politika
-              </a>
+              <a href="#hero" className="underline underline-offset-2">Į viršų</a>
+              <a href={PROFILE.cvUrl} className="underline underline-offset-2">CV</a>
+              <a href="#" className="underline underline-offset-2">Privatumo politika</a>
             </div>
           </div>
         </footer>
