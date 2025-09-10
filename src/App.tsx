@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './components/ui/card'
@@ -13,6 +12,7 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
+  phone: '+3706xxxxxxx',
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
@@ -32,35 +32,35 @@ const PROJECTS = [
   {
     title: 'GST x Purlés – produktų reklamos',
     role: 'Režisūra / filmavimas / montažas',
-    cover: 'https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1600&auto=format&fit=crop',
+    cover: '/covers/purles.jpg',
     tags: ['Beauty', 'Ads', 'UGC'],
     link: '#',
   },
   {
     title: 'Padelio turnyras – aftermovie',
     role: 'Operatorius / montažas',
-    cover: 'https://images.unsplash.com/photo-1521417531039-96c47eb0b1d2?q=80&w=1600&auto=format&fit=crop',
+    cover: '/covers/padelis.jpg',
     tags: ['Sportas', 'Event', 'Storytelling'],
     link: '#',
   },
   {
     title: 'Mažasis verslas – branding video',
     role: 'Idėja / koloritas / garsas',
-    cover: 'https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d2?q=80&w=1600&auto=format&fit=crop',
+    cover: '/covers/branding.jpg',
     tags: ['Branding', 'Story', 'YouTube'],
     link: '#',
   },
   {
     title: 'Produktų foto serija',
     role: 'Fotografija / retušas',
-    cover: 'https://images.unsplash.com/photo-1526948531399-320e7e40f0ca?q=80&w=1600&auto=format&fit=crop',
-    tags: ['Product', 'E‑shop', 'Studio'],
+    cover: '/covers/produktai.jpg',
+    tags: ['Product', 'E-shop', 'Studio'],
     link: '#',
   },
   {
     title: 'Socialinių tinklų klipai',
     role: 'Trumpi formatai / subtitles',
-    cover: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1600&auto=format&fit=crop',
+    cover: '/covers/social.jpg',
     tags: ['Reels/TikTok', 'Kampanijos', 'KPI'],
     link: '#',
   },
@@ -73,6 +73,37 @@ const SERVICES = [
 ]
 
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
+
+// funkcija bandymui atidaryti YouTube app
+function openInAppOrWeb(rawUrl: string) {
+  const isAndroid = /Android/i.test(navigator.userAgent);
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  try {
+    const u = new URL(rawUrl);
+    const isYT = u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
+
+    if (isYT) {
+      let id = "";
+      if (u.hostname.includes("youtu.be")) id = u.pathname.slice(1);
+      else if (u.pathname.startsWith("/watch")) id = u.searchParams.get("v") || "";
+      else if (u.pathname.startsWith("/shorts/")) id = u.pathname.split("/")[2] || "";
+
+      if (id) {
+        const appLink = isIOS ? `youtube://watch?v=${id}` : `vnd.youtube:${id}`;
+        const started = Date.now();
+        window.location.href = appLink;
+        setTimeout(() => {
+          if (Date.now() - started < 1500) {
+            window.open(rawUrl, "_blank", "noopener");
+          }
+        }, 800);
+        return;
+      }
+    }
+  } catch {}
+  window.open(rawUrl, "_blank", "noopener");
+}
 
 export default function App() {
   const [dark, setDark] = useState(true)
@@ -121,19 +152,19 @@ export default function App() {
               </div>
               <div className='mt-6 flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300'>
                 <div className='flex items-center gap-1'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
-                <div className='flex items-center gap-1'><Mail className='h-4 w-4' /> {PROFILE.email}</div>
-                <div className='flex items-center gap-1'><Phone className='h-4 w-4' /> {PROFILE.phone}</div>
+                <div className='flex items-center gap-1'><Mail className='h-4 w-4' /> <a href={`mailto:${PROFILE.email}`} className='underline'>{PROFILE.email}</a></div>
+                <div className='flex items-center gap-1'><Phone className='h-4 w-4' /> <a href={`tel:${PROFILE.phone}`} className='underline'>{PROFILE.phone}</a></div>
               </div>
               <div className='mt-4 flex items-center gap-3'>
-                <a href={PROFILE.socials.instagram} aria-label='Instagram' className='opacity-80 hover:opacity-100'><Instagram className='h-5 w-5' /></a>
-                <a href={PROFILE.socials.facebook} aria-label='Facebook' className='opacity-80 hover:opacity-100'><Facebook className='h-5 w-5' /></a>
-                <a href={PROFILE.socials.youtube} aria-label='YouTube' className='opacity-80 hover:opacity-100'><Youtube className='h-5 w-5' /></a>
+                <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer"><Instagram className='h-5 w-5' /></a>
+                <a href={PROFILE.socials.facebook} target="_blank" rel="noopener noreferrer"><Facebook className='h-5 w-5' /></a>
+                <a href={PROFILE.socials.youtube} target="_blank" rel="noopener noreferrer"><Youtube className='h-5 w-5' /></a>
               </div>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} className='relative'>
               <div className='aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl border border-black/10 dark:border-white/10'>
-                <img src='https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop' alt='Portfolio hero' className='h-full w-full object-cover' />
+                <img src='/hero.jpg' alt='Portfolio hero' className='h-full w-full object-cover' />
               </div>
               <div className='absolute -bottom-6 -left-6 hidden md:block'>
                 <div className='card shadow-xl'>
@@ -176,21 +207,19 @@ export default function App() {
                       {p.tags.map(t => <span key={t} className='rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300'>{t}</span>)}
                     </div>
                     <div className="flex items-center gap-2">
-  <a
-    href={p.link}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
-  >
-    Peržiūra
-  </a>
-  <a
-    href="#"
-    className="px-3 py-1 rounded-lg border border-gray-400 text-gray-300 hover:bg-gray-800 transition"
-  >
-    Case study
-  </a>
-</div>
+                      <button
+                        onClick={() => openInAppOrWeb(p.link)}
+                        className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
+                      >
+                        Peržiūrėti
+                      </button>
+                      <a
+                        href="#"
+                        className="px-3 py-1 rounded-lg border border-gray-400 text-gray-300 hover:bg-gray-800 transition"
+                      >
+                        Case study
+                      </a>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -234,7 +263,7 @@ export default function App() {
               <ul className='mt-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-300'>
                 <li>• 4K filmavimas, S-Log3/HLG koloritas, švarus garso įrašas</li>
                 <li>• Socialinių tinklų paketai: Reels/TikTok/YouTube Shorts</li>
-                <li>• Produktų foto ir e‑shop vizualai</li>
+                <li>• Produktų foto ir e-shop vizualai</li>
                 <li>• Projekto planas ir grąžinimo terminai iš anksto</li>
               </ul>
             </div>
@@ -249,71 +278,3 @@ export default function App() {
                   <div className='flex items-start gap-3'><Rocket className='mt-0.5 h-4 w-4' /> Greitas apsisukimas ir v4/5 pataisų langas</div>
                   <div className='flex items-start gap-3'><BadgeCheck className='mt-0.5 h-4 w-4' /> Fokusas į KPI: peržiūros, CTR, pardavimai</div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section id='contact' className='container py-16'>
-          <div className='mb-8'>
-            <h2 className='text-2xl md:text-3xl font-bold'>Kontaktai</h2>
-            <p className='text-neutral-600 dark:text-neutral-400'>Paprasčiausia – parašyti laišką arba užpildyti formą.</p>
-          </div>
-
-          <div className='grid gap-8 md:grid-cols-5 items-start'>
-            <div className='md:col-span-2 card'>
-              <div className='p-5'>
-                <h3 className='text-lg font-semibold'>{PROFILE.brand}</h3>
-                <p className='text-sm text-neutral-500 dark:text-neutral-400'>Susisiekime dėl idėjos ar komercinio projekto</p>
-              </div>
-              <div className='px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300'>
-                <div className='flex items-center gap-2'><Mail className='h-4 w-4' /> {PROFILE.email}</div>
-                <div className='flex items-center gap-2'><Phone className='h-4 w-4' /> {PROFILE.phone}</div>
-                <div className='flex items-center gap-2'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
-                <div className='flex items-center gap-3 pt-2'>
-                  <a href={PROFILE.socials.instagram} className='underline underline-offset-2'>Instagram</a>
-                  <a href={PROFILE.socials.facebook} className='underline underline-offset-2'>Facebook</a>
-                  <a href={PROFILE.socials.youtube} className='underline underline-offset-2'>YouTube</a>
-                </div>
-              </div>
-            </div>
-
-            <div className='md:col-span-3 card'>
-              <div className='p-5'>
-                <h3 className='text-lg font-semibold'>Trumpa užklausa</h3>
-                <p className='text-sm text-neutral-500 dark:text-neutral-400'>Papasakokite apie projektą – atrašysiu tą pačią dieną.</p>
-              </div>
-              <div className='px-5 pb-5'>
-                <form className='grid gap-4' onSubmit={(e)=>{e.preventDefault(); alert('Ačiū! Forma demonstracinė.')}}>
-                  <div className='grid md:grid-cols-2 gap-4'>
-                    <Input placeholder='Vardas' required />
-                    <Input type='email' placeholder='El. paštas' required />
-                  </div>
-                  <Input placeholder='Tema (pvz., Produktų klipas)' />
-                  <Textarea placeholder='Trumpai apie idėją, formatą, terminą, biudžetą…' rows={5} />
-                  <div className='flex items-center justify-between'>
-                    <div className='text-xs text-neutral-500 dark:text-neutral-400'>Siunčiant sutinkate su privatumo politika.</div>
-                    <Button type='submit'>Siųsti užklausą</Button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FOOTER */}
-        <footer className='border-t border-black/10 dark:border-white/10'>
-          <div className='container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3'>
-            <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
-            <div className='flex items-center gap-4'>
-              <a href='#hero' className='underline underline-offset-2'>Į viršų</a>
-              <a href={PROFILE.cvUrl} className='underline underline-offset-2'>CV</a>
-              <a href='#' className='underline underline-offset-2'>Privatumo politika</a>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </div>
-  )
-}
