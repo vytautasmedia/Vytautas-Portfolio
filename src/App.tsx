@@ -18,6 +18,9 @@ import {
   ArrowRight,
   ChevronRight,
   Monitor,
+  Phone,
+  Landmark,
+  FileText,
 } from 'lucide-react'
 
 /* ============================
@@ -48,12 +51,19 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
+  phone: '+370 6xx xxxxx',                 // <- įrašyk savo
+  bankName: 'Swedbank',                    // pvz.
+  bankIban: 'LTxx xxxx xxxx xxxx xxxx',    // <- įrašyk savo IBAN
+  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. ______', // <- nr.
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
     facebook: 'https://www.facebook.com/vytautas.uselis06',
     youtube: 'https://www.youtube.com/@vuselis',
   },
+  // Po „Kodėl rinktis mane?“ mažas tekstas – laisvai redaguok
+  clientsNote:
+    'Ieškau smulkaus ir vidutinio verslo, sporto klubų, renginių organizatorių ir kūrėjų. Dirbu su prekių ženklais, paslaugomis ir sporto komandomis – nuo idėjos iki finalinio montažo.',
 }
 
 /* ============================
@@ -199,7 +209,7 @@ function VideoModal({
           className="absolute -top-10 right-0 rounded-lg border border-white/20 px-3 py-1 text-sm text-white hover:bg-white/10"
         >
           Užverti ✕
-          </button>
+        </button>
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
           <div className="aspect-video w-full">
             {embed ? (
@@ -282,17 +292,38 @@ export default function App() {
                 </a>
               </div>
 
-              <div className="mt-6 flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-300">
-                <div className="flex items-center gap-1"><MapPin className="h-4 w-4" /> {PROFILE.location}</div>
-                <div className="flex items-center gap-1">
-                  <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline">{PROFILE.email}</a>
+              {/* Kontaktų blokas su tel, banku ir IV pažyma */}
+              <div className="mt-6 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <div className="flex items-center gap-1">
+                    <MapPin className="h-4 w-4" /> {PROFILE.location}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Mail className="h-4 w-4" />
+                    <a href={`mailto:${PROFILE.email}`} className="underline">{PROFILE.email}</a>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Phone className="h-4 w-4" />
+                    <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline">{PROFILE.phone}</a>
+                  </div>
                 </div>
-              </div>
 
-              <div className="mt-4 flex items-center gap-3">
-                <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer"><Instagram className="h-5 w-5" /></a>
-                <a href={PROFILE.socials.facebook} target="_blank" rel="noopener noreferrer"><Facebook className="h-5 w-5" /></a>
-                <a href={PROFILE.socials.youtube} target="_blank" rel="noopener noreferrer"><Youtube className="h-5 w-5" /></a>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <div className="flex items-center gap-1">
+                    <Landmark className="h-4 w-4" />
+                    <span>{PROFILE.bankName}: {PROFILE.bankIban}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <FileText className="h-4 w-4" />
+                    <span>{PROFILE.ivaNote}</span>
+                  </div>
+                </div>
+
+                <div className="pt-1 flex items-center gap-3">
+                  <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer"><Instagram className="h-5 w-5" /></a>
+                  <a href={PROFILE.socials.facebook}  target="_blank" rel="noopener noreferrer"><Facebook  className="h-5 w-5" /></a>
+                  <a href={PROFILE.socials.youtube}   target="_blank" rel="noopener noreferrer"><Youtube   className="h-5 w-5" /></a>
+                </div>
               </div>
             </motion.div>
 
@@ -314,7 +345,7 @@ export default function App() {
             <a href="#contact" className="text-sm underline-offset-2 hover:underline">Domina kažkas panašaus ir jus?</a>
           </div>
 
-          {/* Viršutiniai 3 (spalvoti) */}
+          {/* Viršutiniai 3 */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
             {PROJECTS_TOP.map((p, i) => (
               <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
@@ -342,7 +373,7 @@ export default function App() {
             ))}
           </div>
 
-          {/* Apatiniai 3 („balti“) */}
+          {/* Apatiniai 3 */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {PROJECTS_BOTTOM.map((p, i) => (
               <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
@@ -457,14 +488,14 @@ export default function App() {
             <div className="md:col-span-3">
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
 
-              {/* Aprašymas */}
+              {/* Aprašymas – kiekvienas sakinys naujoje eilutėje */}
               <div className="mt-3 text-neutral-600 dark:text-neutral-300 space-y-2">
-  <p>Esu Vytautas Uselis, kuriantis turinį Klaipėdoje ir už jos ribų.</p>
-  <p>Kuriu vaizdinį turinį susijusį su įvairiais klientais.</p>
-  <p>Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą iki finalinio etapo.</p>
-  <p>Man svarbus aiškumas, rezultatas ir klientas.</p>
-  <p>Darbą atlieku greitai ir kokybiškai.</p>
-</div>
+                <p>Esu Vytautas Uselis, kuriantis turinį Klaipėdoje ir už jos ribų.</p>
+                <p>Kuriu vaizdinį turinį susijusį su įvairiais klientais.</p>
+                <p>Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą iki finalinio etapo.</p>
+                <p>Man svarbus aiškumas, rezultatas ir klientas.</p>
+                <p>Darbą atlieku greitai ir kokybiškai.</p>
+              </div>
 
               {/* Akcentinis CTA */}
               <div className="mt-6 text-xl font-semibold">
@@ -489,6 +520,12 @@ export default function App() {
                   <div className="flex items-start gap-3"><BadgeCheck className="mt-0.5 h-4 w-4" /> Fokusas į peržiūras, pardavimus, susidomėjimą</div>
                 </div>
               </div>
+
+              {/* Nauja maža sekcija: Ko ieškau / su kuo dirbu */}
+              <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
+                <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Ko ieškau / su kuo dirbu</div>
+                <p>{PROFILE.clientsNote}</p>
+              </div>
             </div>
           </div>
         </section>
@@ -510,11 +547,16 @@ export default function App() {
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline underline-offset-2">{PROFILE.email}</a>
                 </div>
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" /> <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline underline-offset-2">{PROFILE.phone}</a>
+                </div>
                 <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> {PROFILE.location}</div>
+                <div className="flex items-center gap-2"><Landmark className="h-4 w-4" /> {PROFILE.bankName}: {PROFILE.bankIban}</div>
+                <div className="flex items-center gap-2"><FileText className="h-4 w-4" /> {PROFILE.ivaNote}</div>
                 <div className="flex items-center gap-3 pt-2">
                   <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Instagram</a>
-                  <a href={PROFILE.socials.facebook} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Facebook</a>
-                  <a href={PROFILE.socials.youtube} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">YouTube</a>
+                  <a href={PROFILE.socials.facebook}  target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Facebook</a>
+                  <a href={PROFILE.socials.youtube}   target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">YouTube</a>
                 </div>
               </div>
             </div>
