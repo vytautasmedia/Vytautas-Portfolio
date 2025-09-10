@@ -76,21 +76,21 @@ const PROJECTS = [
     role: 'Video filmavimas / Montavimas',
     cover: '/covers/bangariteriai.jpg',
     link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
-    tags: ['Sportas', 'Social Media', 'Reels'],
+    tags: ['Sportas', 'Social Media', 'Reklama', 'Reels'],
   },
   {
     title: 'Lithuania | Gargždai',
     role: 'Video filmavimas / Dronas / Montavimas',
     cover: '/covers/grg.jpg',
     link: 'https://www.youtube.com/watch?v=IqY5m8-AQcg',
-    tags: ['Lietuva', 'Gamta', 'Dronas'],
+    tags: ['Lietuva', 'Gamta', 'Kraštovaizdis'],
   },
   {
-    title: 'Padelio turnyras – aftermovie',
-    role: 'Operatorius / montažas',
-    cover: '/covers/padelis.jpg',
-    link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // pakeisk į savo
-    tags: ['Sportas', 'Event', 'Storytelling'],
+    title: 'Belaiko itališkos vestuvės',
+    role: 'Video filmavimas / Dronas / Montavimas',
+    cover: '/covers/belaiko.jpg',
+    link: 'https://youtube.com/shorts/33CF5wBQIZU', // pakeisk į savo
+    tags: ['Gamta', 'Vestuvės', 'Itališkai', 'Turizmas', 'Reklama'],
   },
   {
     title: 'Mažasis verslas – branding video',
