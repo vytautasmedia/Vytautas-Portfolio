@@ -16,7 +16,7 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '+3706xxxxxxx',
+  phone: '+37061444401',
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
