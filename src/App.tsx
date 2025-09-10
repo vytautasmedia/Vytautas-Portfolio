@@ -146,31 +146,31 @@ const SERVICES = [
     icon: <VideoIcon className="h-6 w-6" />,
     name: 'Video produkcija',
     bullets: [
-      'Reklaminiai klipai ir aftermovie',
+      'Reklaminiai klipai, aftermovie',
       'Interviu, social media turinys',
-      'Produktų video ir subtitrai',
+      'Produktų video, subtitrai...',
     ],
-    price: 'Kaina: pagal poreikį',
+    price: 'Kaina pagal susitarimą',
   },
   {
     icon: <Monitor className="h-6 w-6" />,
     name: 'Video montavimas',
     bullets: [
       'Jūsų nufilmuotos medžiagos montažas',
-      'Spalvų korekcija ir garso švara',
-      'Subtitrai, grafika, titrai',
+      'Spalvų korekcija, Garsas',
+      'Subtitrai',
     ],
-    price: 'Kaina: pagal poreikį',
+    price: 'Kaina pagal susitarimą',
   },
   {
     icon: <Rocket className="h-6 w-6" />,
     name: 'Drono paslaugos',
     bullets: [
-      'Filmai iš oro (4K)',
-      'Renginiams, NT ir renginiams',
-      'Saugūs maršrutai ir leidimai',
+      'Filmavimas iš oro (4K)',
+      'Renginiai, NT',
+      'Sportas',
     ],
-    price: 'Kaina: pagal poreikį',
+    price: 'Kaina pagal susitarimą',
   },
 ]
 
