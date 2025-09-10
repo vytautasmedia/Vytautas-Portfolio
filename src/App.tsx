@@ -33,11 +33,11 @@ const PROJECTS = [
     link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
   },
   {
-    title: 'GST x Purlés – produktų reklamos',
-    role: 'Režisūra / filmavimas / montažas',
-    cover: '/covers/purles.jpg',
-    tags: ['Beauty', 'Ads', 'UGC'],
-    link: '#',
+    title: 'Lithuania | Gargždai',
+    role: 'Filmavimas / Dronas / Montažas',
+    cover: '/covers/grg.jpg',
+    tags: ['Lietuva', 'Gamta', 'Dronas'],
+    link: 'https://www.youtube.com/watch?v=IqY5m8-AQcg',
   },
   {
     title: 'Padelio turnyras – aftermovie',
