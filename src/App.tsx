@@ -101,17 +101,17 @@ const PROJECTS = [
   },
   {
     title: 'Gydytojas V.Džiugelis - menas būti sveikam',
-    role: 'Video filmavimas / Montavimas / Monetizavimas',
+    role: 'Video filmavimas / Montavimas / Subtitrai',
     cover: '/covers/dziugelis.jpg',
     link: 'https://youtube.com/shorts/YXkr9E3q6GE', // pakeisk į savo
     tags: ['Sveikatingumas', 'Reklama', 'Profesionalumas'],
   },
   {
-    title: 'Socialinių tinklų klipai',
-    role: 'Trumpi formatai / subtitles',
-    cover: '/covers/social.jpg',
-    link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', // pakeisk į savo
-    tags: ['Reels/TikTok', 'Kampanijos', 'KPI'],
+    title: 'Gargždų Banga - Dažasvydis',
+    role: 'Video filmavimas / Montavimas / Reklama',
+    cover: '/covers/banga.jpg',
+    link: 'https://youtube.com/shorts/nhFanEVn2zQ', // pakeisk į savo
+    tags: ['Contribee', 'Sportas', 'Dažasvydis'],
   },
 ]
 
