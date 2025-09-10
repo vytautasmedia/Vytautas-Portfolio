@@ -4,7 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './com
 import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
-import { Camera, Video, BadgeCheck, Mail, Phone, MapPin, Sun, Moon, Instagram, Facebook, Youtube, Download, Rocket, Sparkles, Palette, ArrowRight, ChevronRight } from 'lucide-react'
+import {
+  Camera, Video, BadgeCheck, Mail, Phone, MapPin, Sun, Moon,
+  Instagram, Facebook, Youtube, Download, Rocket, Sparkles, Palette,
+  ArrowRight, ChevronRight
+} from 'lucide-react'
 
 const PROFILE = {
   name: 'Vytautas Uselis',
@@ -25,7 +29,7 @@ const PROJECTS = [
   {
     title: 'Gargždų Banga vs Riteriai',
     role: 'Video filmavimas / Montavimas / Reels',
-    cover: "/covers/bangariteriai.jpg",
+    cover: '/covers/bangariteriai.jpg',
     tags: ['Sportas', 'Social Media', 'Reels'],
     link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
   },
@@ -74,39 +78,34 @@ const SERVICES = [
 
 const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
 
-// funkcija bandymui atidaryti YouTube app
+// Bandymas atidaryti YouTube programėlę; jei nepavyksta – atidaro web naujame tabe
 function openInAppOrWeb(rawUrl: string) {
-  const isAndroid = /Android/i.test(navigator.userAgent);
-  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
   try {
-    const u = new URL(rawUrl);
-    const isYT = u.hostname.includes("youtube.com") || u.hostname.includes("youtu.be");
-
+    const u = new URL(rawUrl)
+    const isYT = u.hostname.includes('youtube.com') || u.hostname.includes('youtu.be')
     if (isYT) {
-      let id = "";
-      if (u.hostname.includes("youtu.be")) id = u.pathname.slice(1);
-      else if (u.pathname.startsWith("/watch")) id = u.searchParams.get("v") || "";
-      else if (u.pathname.startsWith("/shorts/")) id = u.pathname.split("/")[2] || "";
-
+      let id = ''
+      if (u.hostname.includes('youtu.be')) id = u.pathname.slice(1)
+      else if (u.pathname.startsWith('/watch')) id = u.searchParams.get('v') || ''
+      else if (u.pathname.startsWith('/shorts/')) id = u.pathname.split('/')[2] || ''
       if (id) {
-        const appLink = isIOS ? `youtube://watch?v=${id}` : `vnd.youtube:${id}`;
-        const started = Date.now();
-        window.location.href = appLink;
+        const appLink = isIOS ? `youtube://watch?v=${id}` : `vnd.youtube:${id}`
+        const started = Date.now()
+        window.location.href = appLink
         setTimeout(() => {
-          if (Date.now() - started < 1500) {
-            window.open(rawUrl, "_blank", "noopener");
-          }
-        }, 800);
-        return;
+          if (Date.now() - started < 1500) window.open(rawUrl, '_blank', 'noopener')
+        }, 800)
+        return
       }
     }
   } catch {}
-  window.open(rawUrl, "_blank", "noopener");
+  window.open(rawUrl, '_blank', 'noopener')
 }
 
 export default function App() {
   const [dark, setDark] = useState(true)
+
   return (
     <div className={dark ? 'dark' : ''}>
       <div className='theme min-h-screen transition-colors'>
@@ -156,9 +155,9 @@ export default function App() {
                 <div className='flex items-center gap-1'><Phone className='h-4 w-4' /> <a href={`tel:${PROFILE.phone}`} className='underline'>{PROFILE.phone}</a></div>
               </div>
               <div className='mt-4 flex items-center gap-3'>
-                <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer"><Instagram className='h-5 w-5' /></a>
-                <a href={PROFILE.socials.facebook} target="_blank" rel="noopener noreferrer"><Facebook className='h-5 w-5' /></a>
-                <a href={PROFILE.socials.youtube} target="_blank" rel="noopener noreferrer"><Youtube className='h-5 w-5' /></a>
+                <a href={PROFILE.socials.instagram} target='_blank' rel='noopener noreferrer'><Instagram className='h-5 w-5' /></a>
+                <a href={PROFILE.socials.facebook} target='_blank' rel='noopener noreferrer'><Facebook className='h-5 w-5' /></a>
+                <a href={PROFILE.socials.youtube} target='_blank' rel='noopener noreferrer'><Youtube className='h-5 w-5' /></a>
               </div>
             </motion.div>
 
@@ -190,9 +189,17 @@ export default function App() {
             </div>
             <a href='#contact' className='text-sm underline-offset-2 hover:underline'>Reikia kažko panašaus?</a>
           </div>
+
           <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
             {PROJECTS.map((p, i) => (
-              <motion.div key={p.title} variants={ITEM_VARIANTS} initial='hidden' whileInView='show' viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i*0.05 }}>
+              <motion.div
+                key={p.title}
+                variants={ITEM_VARIANTS}
+                initial='hidden'
+                whileInView='show'
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+              >
                 <div className='card overflow-hidden'>
                   <div className='relative'>
                     <img src={p.cover} alt={p.title} className='aspect-video w-full object-cover transition-transform duration-300 hover:scale-105' />
@@ -204,19 +211,20 @@ export default function App() {
                   </div>
                   <div className='px-5 pb-5'>
                     <div className='mb-3 flex flex-wrap gap-2'>
-                      {p.tags.map(t => <span key={t} className='rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300'>{t}</span>)}
+                      {p.tags.map(t => (
+                        <span key={t} className='rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300'>
+                          {t}
+                        </span>
+                      ))}
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className='flex items-center gap-2'>
                       <button
                         onClick={() => openInAppOrWeb(p.link)}
-                        className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition"
+                        className='px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition'
                       >
                         Peržiūrėti
                       </button>
-                      <a
-                        href="#"
-                        className="px-3 py-1 rounded-lg border border-gray-400 text-gray-300 hover:bg-gray-800 transition"
-                      >
+                      <a href='#' className='px-3 py-1 rounded-lg border border-gray-400 text-gray-300 hover:bg-gray-800 transition'>
                         Case study
                       </a>
                     </div>
@@ -235,11 +243,13 @@ export default function App() {
               <p className='text-neutral-600 dark:text-neutral-400'>Lankstūs paketai verslui, sporto klubams ir kūrėjams.</p>
             </div>
             <div className='grid gap-6 md:grid-cols-3'>
-              {SERVICES.map((s,i) => (
-                <motion.div key={s.name} variants={ITEM_VARIANTS} initial='hidden' whileInView='show' viewport={{ once: true }} transition={{ duration: 0.4, delay: i*0.05 }}>
+              {SERVICES.map((s, i) => (
+                <motion.div key={s.name} variants={ITEM_VARIANTS} initial='hidden' whileInView='show' viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }}>
                   <div className='card'>
                     <div className='p-5'>
-                      <div className='mb-2 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10'>{s.icon}</div>
+                      <div className='mb-2 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10'>
+                        {s.icon}
+                      </div>
                       <h3 className='text-lg font-semibold'>{s.name}</h3>
                       <p className='text-sm text-neutral-500 dark:text-neutral-400'>{s.desc}</p>
                     </div>
@@ -278,3 +288,71 @@ export default function App() {
                   <div className='flex items-start gap-3'><Rocket className='mt-0.5 h-4 w-4' /> Greitas apsisukimas ir v4/5 pataisų langas</div>
                   <div className='flex items-start gap-3'><BadgeCheck className='mt-0.5 h-4 w-4' /> Fokusas į KPI: peržiūros, CTR, pardavimai</div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section id='contact' className='container py-16'>
+          <div className='mb-8'>
+            <h2 className='text-2xl md:text-3xl font-bold'>Kontaktai</h2>
+            <p className='text-neutral-600 dark:text-neutral-400'>Paprasčiausia – parašyti laišką arba užpildyti formą.</p>
+          </div>
+
+          <div className='grid gap-8 md:grid-cols-5 items-start'>
+            <div className='md:col-span-2 card'>
+              <div className='p-5'>
+                <h3 className='text-lg font-semibold'>{PROFILE.brand}</h3>
+                <p className='text-sm text-neutral-500 dark:text-neutral-400'>Susisiekime dėl idėjos ar komercinio projekto</p>
+              </div>
+              <div className='px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300'>
+                <div className='flex items-center gap-2'><Mail className='h-4 w-4' /> <a href={`mailto:${PROFILE.email}`} className='underline underline-offset-2'>{PROFILE.email}</a></div>
+                <div className='flex items-center gap-2'><Phone className='h-4 w-4' /> <a href={`tel:${PROFILE.phone}`} className='underline underline-offset-2'>{PROFILE.phone}</a></div>
+                <div className='flex items-center gap-2'><MapPin className='h-4 w-4' /> {PROFILE.location}</div>
+                <div className='flex items-center gap-3 pt-2'>
+                  <a href={PROFILE.socials.instagram} target='_blank' rel='noopener noreferrer' className='underline underline-offset-2'>Instagram</a>
+                  <a href={PROFILE.socials.facebook} target='_blank' rel='noopener noreferrer' className='underline underline-offset-2'>Facebook</a>
+                  <a href={PROFILE.socials.youtube} target='_blank' rel='noopener noreferrer' className='underline underline-offset-2'>YouTube</a>
+                </div>
+              </div>
+            </div>
+
+            <div className='md:col-span-3 card'>
+              <div className='p-5'>
+                <h3 className='text-lg font-semibold'>Trumpa užklausa</h3>
+                <p className='text-sm text-neutral-500 dark:text-neutral-400'>Papasakokite apie projektą – atrašysiu tą pačią dieną.</p>
+              </div>
+              <div className='px-5 pb-5'>
+                <form className='grid gap-4' onSubmit={(e)=>{e.preventDefault(); alert('Ačiū! Forma demonstracinė.')}}>
+                  <div className='grid md:grid-cols-2 gap-4'>
+                    <Input placeholder='Vardas' required />
+                    <Input type='email' placeholder='El. paštas' required />
+                  </div>
+                  <Input placeholder='Tema (pvz., Produktų klipas)' />
+                  <Textarea placeholder='Trumpai apie idėją, formatą, terminą, biudžetą…' rows={5} />
+                  <div className='flex items-center justify-between'>
+                    <div className='text-xs text-neutral-500 dark:text-neutral-400'>Siunčiant sutinkate su privatumo politika.</div>
+                    <Button type='submit'>Siųsti užklausą</Button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FOOTER */}
+        <footer className='border-t border-black/10 dark:border-white/10'>
+          <div className='container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3'>
+            <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
+            <div className='flex items-center gap-4'>
+              <a href='#hero' className='underline underline-offset-2'>Į viršų</a>
+              <a href={PROFILE.cvUrl} className='underline underline-offset-2'>CV</a>
+              <a href='#' className='underline underline-offset-2'>Privatumo politika</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  )
+}
