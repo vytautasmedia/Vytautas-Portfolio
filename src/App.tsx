@@ -52,9 +52,9 @@ const PROFILE = {
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
   phone: '+370 614 44401',                 // <- įrašyk savo
-  bankName: 'Swedbank AB',                    // pvz.
+  bankName: 'Swedbank',                    // pvz.
   bankIban: 'LT51 7300 0101 5880 3949',    // <- įrašyk savo IBAN
-  ivaNote: 'Darbas pagal individualią veiklą, paž. nr.1409134', // <- nr.
+  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. 1409134', // <- nr.
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
