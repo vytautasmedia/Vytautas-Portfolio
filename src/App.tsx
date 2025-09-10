@@ -158,9 +158,9 @@ export default function App() {
         <section id='hero' className='border-b border-black/10 dark:border-white/10'>
           <div className='container py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center'>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <div className='inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs border-black/10 dark:border-white/10'>
-                <BadgeCheck className='h-4 w-4' /> Kūrybinių idėjų sprendimas
-              </div>
+             <h2 className="text-lg font-medium text-neutral-400 dark:text-neutral-500">
+               Sveiki atvykę į mano portfolio
+             </h2>
               <h1 className='mt-4 text-4xl md:text-6xl font-bold leading-tight'>{PROFILE.name}</h1>
               <p className='mt-2 text-lg text-neutral-500 dark:text-neutral-400'>{PROFILE.title}</p>
                 <p className='mt-4 text-base text-neutral-600 dark:text-neutral-300'>
