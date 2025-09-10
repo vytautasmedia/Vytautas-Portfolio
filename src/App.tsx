@@ -165,6 +165,7 @@ export default function App() {
               <p className='mt-2 text-lg text-neutral-500 dark:text-neutral-400'>{PROFILE.title}</p>
               <p className='mt-4 text-base text-neutral-600 dark:text-neutral-300'>
                 Kuriu aiškias, estetiškas ir jausmų kupinas istorijas.
+                Siūlau kūrybinių idėjų realizaciją pagal jūsų norus.
               </p>
               <div className='mt-6 flex flex-wrap items-center gap-3'>
                 <a href='#projects'><button className='btn btn-primary'>Peržiūrėti darbus <ArrowRight className='ml-1 h-4 w-4' /></button></a>
