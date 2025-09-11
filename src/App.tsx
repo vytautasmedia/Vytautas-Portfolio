@@ -530,7 +530,7 @@ export default function App() {
               <div className="p-5">
                 <h3 className="text-lg font-semibold">Trumpa užklausa</h3>
                 <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                  Papasakokite kas Jus domina – atrašysiu kaip tik galėsiu greičiau.
+                  Papasakokite kas Jus domina – atrašysiu kaip tik galėsiu.
                 </p>
               </div>
               <div className="px-5 pb-5">
