@@ -51,22 +51,23 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '+370 614 44401',
-  bankName: 'Swedbank',
-  bankIban: 'LT51 7300 0101 5880 3949',
-  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. 1409134',
+  phone: '+370 6xx xxxxx',                 // <- įrašyk savo
+  bankName: 'Swedbank',                    // pvz.
+  bankIban: 'LTxx xxxx xxxx xxxx xxxx',    // <- įrašyk savo IBAN
+  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. ______', // <- nr.
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
     facebook: 'https://www.facebook.com/vytautas.uselis06',
     youtube: 'https://www.youtube.com/@vuselis',
   },
+  // Po „Kodėl rinktis mane?“ mažas tekstas – laisvai redaguok
   clientsNote:
-    'Atviri bendradarbiavimui smulkūs verslai, sporto klubai, renginiai, produktų kūrėjai ir asmeniniai prekių ženklai.',
+    'Ieškau smulkaus ir vidutinio verslo, sporto klubų, renginių organizatorių ir kūrėjų. Dirbu su prekių ženklais, paslaugomis ir sporto komandomis – nuo idėjos iki finalinio montažo.',
 }
 
 /* ============================
-   Projektai
+   Projektai (viršutinė trijulė – spalvoti)
    ============================ */
 const PROJECTS_TOP = [
   {
@@ -92,6 +93,9 @@ const PROJECTS_TOP = [
   },
 ]
 
+/* ============================
+   Projektai (apatinė trijulė – „balti“)
+   ============================ */
 const PROJECTS_BOTTOM = [
   {
     title: 'Belaiko itališkos vestuvės',
@@ -113,6 +117,33 @@ const PROJECTS_BOTTOM = [
     cover: '/covers/dziugelis.jpg',
     link: 'https://youtube.com/shorts/YXkr9E3q6GE',
     tags: ['Sveikatingumas', 'Reklama', 'Profesionalumas'],
+  },
+]
+
+/* ============================
+   „Darbai prie kurių prisidėjau“
+   ============================ */
+const CONTRIBUTED = [
+  {
+    title: 'Toyota – ėjimas, kuris keičia',
+    role: 'Kitų filmuotos medžiagos montavimas',
+    cover: '/covers/toyota.jpg',
+    link: 'https://youtu.be/PQWHWeBxhoE',
+    tags: ['Montavimas'],
+  },
+  {
+    title: 'Dextera',
+    role: 'Kitų filmuotos medžiagos montavimas',
+    cover: '/covers/dextera.jpg',
+    link: 'https://youtube.com/shorts/-T2-qEmDqkQ',
+    tags: ['Montavimas'],
+  },
+  {
+    title: 'Pjazz',
+    role: 'Kitų filmuotos medžiagos montavimas',
+    cover: '/covers/pjazz.jpg',
+    link: 'https://youtube.com/shorts/HRXAf8doui4',
+    tags: ['Montavimas'],
   },
 ]
 
@@ -261,7 +292,7 @@ export default function App() {
                 </a>
               </div>
 
-              {/* Kontaktų blokas */}
+              {/* Kontaktų blokas su tel, banku ir IV pažyma */}
               <div className="mt-6 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   <div className="flex items-center gap-1">
@@ -411,6 +442,7 @@ export default function App() {
           <div className="container py-16">
             <div className="mb-8">
               <h2 className="text-2xl md:text-3xl font-bold">Paslaugos</h2>
+              <p className="text-neutral-600 dark:text-neutral-400">Lanksčūs paketai verslui, sporto klubams ir kūrėjams.</p>
             </div>
 
             <div className="grid gap-6 md:grid-cols-3">
@@ -456,6 +488,7 @@ export default function App() {
             <div className="md:col-span-3">
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
 
+              {/* Aprašymas – kiekvienas sakinys naujoje eilutėje */}
               <div className="mt-3 text-neutral-600 dark:text-neutral-300 space-y-2">
                 <p>Esu Vytautas Uselis, kuriantis turinį Klaipėdoje ir už jos ribų.</p>
                 <p>Kuriu vaizdinį turinį susijusį su įvairiais klientais.</p>
@@ -464,6 +497,7 @@ export default function App() {
                 <p>Darbą atlieku greitai ir kokybiškai.</p>
               </div>
 
+              {/* Akcentinis CTA */}
               <div className="mt-6 text-xl font-semibold">
                 <span className="bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent">
                   Turi idėją, bet nežinai kaip ją įgyvendinti?
@@ -487,8 +521,9 @@ export default function App() {
                 </div>
               </div>
 
+              {/* Nauja maža sekcija: Ko ieškau / su kuo dirbu */}
               <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
-                <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Dirbu su klientais kurie:</div>
+                <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Ko ieškau / su kuo dirbu</div>
                 <p>{PROFILE.clientsNote}</p>
               </div>
             </div>
@@ -499,13 +534,14 @@ export default function App() {
         <section id="contact" className="container py-16">
           <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold">Kontaktai</h2>
+            <p className="text-neutral-600 dark:text-neutral-400">Paprasčiausia – parašyti laišką arba užpildyti formą.</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-5 items-start">
             <div className="md:col-span-2 card">
               <div className="p-5">
                 <h3 className="text-lg font-semibold">{PROFILE.brand}</h3>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">Susisiekite su manimi dėl idėjos realizacijos</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">Susisiekime dėl idėjos ar komercinio projekto</p>
               </div>
               <div className="px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="flex items-center gap-2">
@@ -525,84 +561,30 @@ export default function App() {
               </div>
             </div>
 
-            {/* Kontaktų forma su Formspree */}
             <div className="md:col-span-3 card">
               <div className="p-5">
                 <h3 className="text-lg font-semibold">Trumpa užklausa</h3>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                  Papasakokite kas Jus domina – atrašysiu kaip tik galėsiu.
-                </p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite apie projektą – atrašysiu tą pačią dieną.</p>
               </div>
               <div className="px-5 pb-5">
                 <form
-                  action="https://formspree.io/f/mgvldgjb"
-                  method="POST"
                   className="grid gap-4"
+                  onSubmit={(e) => {
+                    e.preventDefault()
+                    alert('Ačiū! Forma demonstracinė.')
+                  }}
                 >
                   <div className="grid md:grid-cols-2 gap-4">
-                    <Input name="name" placeholder="Vardas" required />
-                    <Input name="email" type="email" placeholder="El. paštas" required />
+                    <Input placeholder="Vardas" required />
+                    <Input type="email" placeholder="El. paštas" required />
                   </div>
-                  <Input name="subject" placeholder="Tema (pvz., Drono paslaugos NT)" />
-                  <Textarea
-                    name="message"
-                    placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…"
-                    rows={5}
-                    required
-                  />
-
-                  {/* Papildomi nustatymai */}
-                  <input
-                    type="hidden"
-                    name="_subject"
-                    value="Nauja užklausa iš vytautasmedia.lt"
-                  />
-                  <input type="hidden" name="_language" value="lt" />
-                  <input
-                    type="hidden"
-                    name="_redirect"
-                    value="https://vytautasmedia.lt/#contact"
-                  />
-
+                  <Input placeholder="Tema (pvz., Produktų klipas)" />
+                  <Textarea placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…" rows={5} />
                   <div className="flex items-center justify-between">
-                    <a href="#privacy" className="text-xs underline underline-offset-2">
-                      Siunčiant sutinkate su privatumo politika
-                    </a>
+                    <div className="text-xs text-neutral-500 dark:text-neutral-400">Siunčiant sutinkate su privatumo politika.</div>
                     <Button type="submit">Siųsti užklausą</Button>
                   </div>
                 </form>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* PRIVACY */}
-        <section id="privacy" className="container py-16">
-          <div className="card">
-            <div className="p-5">
-              <h2 className="text-xl md:text-2xl font-semibold">Privatumo politika</h2>
-              <div className="prose prose-invert max-w-none text-sm text-neutral-600 dark:text-neutral-300">
-                <p>
-                  Šioje svetainėje pateikti asmens duomenys (vardas, el. paštas, žinutės turinys)
-                  naudojami tik komunikacijai dėl Jūsų užklausos ir paslaugų teikimo.
-                </p>
-                <p>
-                  Duomenų valdytojas: {PROFILE.name} ({PROFILE.brand}). Kontaktai: {PROFILE.email}, {PROFILE.phone}.
-                </p>
-                <p>
-                  Teisinis tvarkymo pagrindas – Jūsų sutikimas ir teisėtas interesas atsakyti į užklausą.
-                  Duomenys nėra perduodami tretiesiems asmenims, nebent to reikalauja teisės aktai.
-                </p>
-                <p>
-                  Duomenų saugojimo terminas – iki 12 mėn. nuo paskutinės komunikacijos, nebent pareikalaujate anksčiau ištrinti.
-                </p>
-                <p>
-                  Jūs turite teisę susipažinti su savo duomenimis, juos taisyti, ištrinti, apriboti tvarkymą ar
-                  pateikti skundą Valstybinei duomenų apsaugos inspekcijai.
-                </p>
-                <p>
-                  Dėl privatumo klausimų kreipkitės el. paštu: {PROFILE.email}.
-                </p>
               </div>
             </div>
           </div>
@@ -615,7 +597,7 @@ export default function App() {
             <div className="flex items-center gap-4">
               <a href="#hero" className="underline underline-offset-2">Į viršų</a>
               <a href={PROFILE.cvUrl} className="underline underline-offset-2">CV</a>
-              <a href="#privacy" className="underline underline-offset-2">Privatumo politika</a>
+              <a href="#" className="underline underline-offset-2">Privatumo politika</a>
             </div>
           </div>
         </footer>
