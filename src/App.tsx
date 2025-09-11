@@ -1,5 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
@@ -22,6 +23,11 @@ import {
   Landmark,
   FileText,
 } from 'lucide-react'
+
+/* ===== EmailJS konfigas (įrašyk savo ID) ===== */
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'
 
 /* ============================
    Pagalbinės funkcijos (YouTube)
@@ -51,23 +57,21 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '+370 614 44401',                 // <- įrašyk savo
-  bankName: 'Swedbank',                    // pvz.
-  bankIban: 'LT51 7300 0101 5880 3949',    // <- įrašyk savo IBAN
-  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. 1409134', // <- nr.
+  phone: '+370 614 44401',
+  bankName: 'Swedbank',
+  bankIban: 'LT51 7300 0101 5880 3949',
+  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. 1409134',
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
     facebook: 'https://www.facebook.com/vytautas.uselis06',
     youtube: 'https://www.youtube.com/@vuselis',
   },
-  // Po „Kodėl rinktis mane?“ mažas tekstas – laisvai redaguok
-  clientsNote:
-    '--------',
+  clientsNote: '--------',
 }
 
 /* ============================
-   Projektai (viršutinė trijulė – spalvoti)
+   Projektai
    ============================ */
 const PROJECTS_TOP = [
   {
@@ -93,9 +97,6 @@ const PROJECTS_TOP = [
   },
 ]
 
-/* ============================
-   Projektai (apatinė trijulė – „balti“)
-   ============================ */
 const PROJECTS_BOTTOM = [
   {
     title: 'Belaiko itališkos vestuvės',
@@ -238,6 +239,31 @@ export default function App() {
   const [dark, setDark] = useState(true)
   const [player, setPlayer] = useState<PlayerState>(null)
 
+  // EmailJS formos būsena
+  const formRef = useRef<HTMLFormElement>(null)
+  const [sendStatus, setSendStatus] =
+    useState<'idle' | 'sending' | 'success' | 'error'>('idle')
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    if (!formRef.current) return
+
+    setSendStatus('sending')
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        EMAILJS_PUBLIC_KEY
+      )
+      setSendStatus('success')
+      formRef.current.reset()
+    } catch (err) {
+      console.error(err)
+      setSendStatus('error')
+    }
+  }
+
   return (
     <div className={dark ? 'dark' : ''}>
       <div className="theme min-h-screen transition-colors">
@@ -292,7 +318,7 @@ export default function App() {
                 </a>
               </div>
 
-              {/* Kontaktų blokas su tel, banku ir IV pažyma */}
+              {/* Kontaktų blokas */}
               <div className="mt-6 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   <div className="flex items-center gap-1">
@@ -345,7 +371,6 @@ export default function App() {
             <a href="#contact" className="text-sm underline-offset-2 hover:underline">Domina kažkas panašaus ir jus?</a>
           </div>
 
-          {/* Viršutiniai 3 */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
             {PROJECTS_TOP.map((p, i) => (
               <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
@@ -373,7 +398,6 @@ export default function App() {
             ))}
           </div>
 
-          {/* Apatiniai 3 */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {PROJECTS_BOTTOM.map((p, i) => (
               <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
@@ -487,7 +511,6 @@ export default function App() {
             <div className="md:col-span-3">
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
 
-              {/* Aprašymas – kiekvienas sakinys naujoje eilutėje */}
               <div className="mt-3 text-neutral-600 dark:text-neutral-300 space-y-2">
                 <p>Esu Vytautas Uselis, kuriantis turinį Klaipėdoje ir už jos ribų.</p>
                 <p>Kuriu vaizdinį turinį susijusį su įvairiais klientais.</p>
@@ -496,7 +519,6 @@ export default function App() {
                 <p>Darbą atlieku greitai ir kokybiškai.</p>
               </div>
 
-              {/* Akcentinis CTA */}
               <div className="mt-6 text-xl font-semibold">
                 <span className="bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent">
                   Turi idėją, bet nežinai kaip ją įgyvendinti?
@@ -520,7 +542,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Nauja maža sekcija: Ko ieškau / su kuo dirbu */}
               <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Dirbu su klientais kurie:</div>
                 <p>{PROFILE.clientsNote}</p>
@@ -562,27 +583,61 @@ export default function App() {
             <div className="md:col-span-3 card">
               <div className="p-5">
                 <h3 className="text-lg font-semibold">Trumpa užklausa</h3>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite kas Jus domina, o aš atrašysiu kaip tik galėdamas greičiau</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                  Papasakokite kas Jus domina – atrašysiu kaip tik galėsiu.
+                </p>
               </div>
               <div className="px-5 pb-5">
-                <form
-                  className="grid gap-4"
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    alert('Ačiū! Forma demonstracinė.')
-                  }}
-                >
+                <form ref={formRef} className="grid gap-4" onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <Input placeholder="Vardas" required />
-                    <Input type="email" placeholder="El. paštas" required />
+                    <Input name="name" placeholder="Vardas" required />
+                    <Input name="email" type="email" placeholder="El. paštas" required />
                   </div>
-                  <Input placeholder="Tema (pvz., Drono paslaugos NT)" />
-                  <Textarea placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…" rows={5} />
+                  <Input name="subject" placeholder="Tema (pvz., Drono paslaugos NT)" />
+                  <Textarea name="message" placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…" rows={5} />
+
                   <div className="flex items-center justify-between">
-                    <div className="text-xs text-neutral-500 dark:text-neutral-400">Siunčiant sutinkate su privatumo politika.</div>
-                    <Button type="submit">Siųsti užklausą</Button>
+                    <a href="#privacy" className="text-xs underline underline-offset-2">
+                      Siunčiant sutinkate su privatumo politika
+                    </a>
+
+                    <Button type="submit" disabled={sendStatus === 'sending'}>
+                      {sendStatus === 'sending' ? 'Siunčiama…' : sendStatus === 'success' ? 'Išsiųsta ✅' : sendStatus === 'error' ? 'Bandykite dar kartą ❌' : 'Siųsti užklausą'}
+                    </Button>
                   </div>
                 </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PRIVACY */}
+        <section id="privacy" className="container py-16">
+          <div className="card">
+            <div className="p-5">
+              <h2 className="text-xl md:text-2xl font-semibold">Privatumo politika</h2>
+              <div className="prose prose-invert max-w-none text-sm text-neutral-600 dark:text-neutral-300">
+                <p>
+                  Šioje svetainėje pateikti asmens duomenys (vardas, el. paštas, žinutės turinys)
+                  naudojami tik komunikacijai dėl Jūsų užklausos ir paslaugų teikimo.
+                </p>
+                <p>
+                  Duomenų valdytojas: {PROFILE.name} ({PROFILE.brand}). Kontaktai: {PROFILE.email}, {PROFILE.phone}.
+                </p>
+                <p>
+                  Teisinis tvarkymo pagrindas – Jūsų sutikimas ir teisėtas interesas atsakyti į užklausą.
+                  Duomenys nėra perduodami tretiesiems asmenims, nebent to reikalauja teisės aktai.
+                </p>
+                <p>
+                  Duomenų saugojimo terminas – iki 12 mėn. nuo paskutinės komunikacijos, nebent pareikalaujate anksčiau ištrinti.
+                </p>
+                <p>
+                  Jūs turite teisę susipažinti su savo duomenimis, juos taisyti, ištrinti, apriboti tvarkymą ar
+                  pateikti skundą Valstybinei duomenų apsaugos inspekcijai.
+                </p>
+                <p>
+                  Dėl privatumo klausimų kreipkitės el. paštu: {PROFILE.email}.
+                </p>
               </div>
             </div>
           </div>
@@ -595,7 +650,7 @@ export default function App() {
             <div className="flex items-center gap-4">
               <a href="#hero" className="underline underline-offset-2">Į viršų</a>
               <a href={PROFILE.cvUrl} className="underline underline-offset-2">CV</a>
-              <a href="#" className="underline underline-offset-2">Privatumo politika</a>
+              <a href="#privacy" className="underline underline-offset-2">Privatumo politika</a>
             </div>
           </div>
         </footer>
