@@ -533,7 +533,6 @@ export default function App() {
         <section id="contact" className="container py-16">
           <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold">Kontaktai</h2>
-            <p className="text-neutral-600 dark:text-neutral-400">Parašykite laišką ir su manimi susisieksite</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-5 items-start">
@@ -563,7 +562,7 @@ export default function App() {
             <div className="md:col-span-3 card">
               <div className="p-5">
                 <h3 className="text-lg font-semibold">Trumpa užklausa</h3>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite kas Jus domina, o aš susisieksiu kaip tik galėdamas greičiau</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite kas Jus domina, o aš atrašysiu kaip tik galėdamas greičiau</p>
               </div>
               <div className="px-5 pb-5">
                 <form
