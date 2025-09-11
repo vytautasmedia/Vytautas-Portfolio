@@ -161,7 +161,7 @@ const SERVICES = [
   {
     icon: <Monitor className="h-6 w-6" />,
     name: 'Video montavimas',
-    bullets: ['Jūsų nufilmuotos medžiagos montažas', 'Spalvų korekcija, Garsas', 'Subtitrai'],
+    bullets: ['Jūsų nufilmuotos medžiagos montavimas', 'Spalvų korekcija, Garsas', 'Subtitrai'],
     price: 'Kaina pagal susitarimą',
   },
   {
