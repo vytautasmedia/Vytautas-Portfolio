@@ -483,7 +483,7 @@ export default function App() {
               </div>
 
               <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
-                <p className="font-semibold text-neutral-900 dark:text-neutral-200">Dirbu su fiziniais ir juridiniais asmenimis:</p>
+                <p className="font-semibold text-neutral-900 dark:text-neutral-200">Dirbu su fiziniais ir juridiniais asmenimis</p>
                 <ul className="mt-2 list-disc pl-5 space-y-1">
                   {CLIENT_POINTS.map((x) => <li key={x}>{x}</li>)}
                 </ul>
