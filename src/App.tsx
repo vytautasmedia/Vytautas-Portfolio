@@ -1,6 +1,5 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import emailjs from '@emailjs/browser'
 import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Textarea } from './components/ui/textarea'
@@ -23,11 +22,6 @@ import {
   Landmark,
   FileText,
 } from 'lucide-react'
-
-/* ===== EmailJS konfigas (įrašyk savo ID) ===== */
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID'
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'
 
 /* ============================
    Pagalbinės funkcijos (YouTube)
@@ -67,7 +61,8 @@ const PROFILE = {
     facebook: 'https://www.facebook.com/vytautas.uselis06',
     youtube: 'https://www.youtube.com/@vuselis',
   },
-  clientsNote: '--------',
+  clientsNote:
+    'Atviri bendradarbiavimui smulkūs verslai, sporto klubai, renginiai, produktų kūrėjai ir asmeniniai prekių ženklai.',
 }
 
 /* ============================
@@ -118,33 +113,6 @@ const PROJECTS_BOTTOM = [
     cover: '/covers/dziugelis.jpg',
     link: 'https://youtube.com/shorts/YXkr9E3q6GE',
     tags: ['Sveikatingumas', 'Reklama', 'Profesionalumas'],
-  },
-]
-
-/* ============================
-   „Darbai prie kurių prisidėjau“
-   ============================ */
-const CONTRIBUTED = [
-  {
-    title: 'Toyota – ėjimas, kuris keičia',
-    role: 'Kitų filmuotos medžiagos montavimas',
-    cover: '/covers/toyota.jpg',
-    link: 'https://youtu.be/PQWHWeBxhoE',
-    tags: ['Montavimas'],
-  },
-  {
-    title: 'Dextera',
-    role: 'Kitų filmuotos medžiagos montavimas',
-    cover: '/covers/dextera.jpg',
-    link: 'https://youtube.com/shorts/-T2-qEmDqkQ',
-    tags: ['Montavimas'],
-  },
-  {
-    title: 'Pjazz',
-    role: 'Kitų filmuotos medžiagos montavimas',
-    cover: '/covers/pjazz.jpg',
-    link: 'https://youtube.com/shorts/HRXAf8doui4',
-    tags: ['Montavimas'],
   },
 ]
 
@@ -238,31 +206,6 @@ function VideoModal({
 export default function App() {
   const [dark, setDark] = useState(true)
   const [player, setPlayer] = useState<PlayerState>(null)
-
-  // EmailJS formos būsena
-  const formRef = useRef<HTMLFormElement>(null)
-  const [sendStatus, setSendStatus] =
-    useState<'idle' | 'sending' | 'success' | 'error'>('idle')
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (!formRef.current) return
-
-    setSendStatus('sending')
-    try {
-      await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        EMAILJS_PUBLIC_KEY
-      )
-      setSendStatus('success')
-      formRef.current.reset()
-    } catch (err) {
-      console.error(err)
-      setSendStatus('error')
-    }
-  }
 
   return (
     <div className={dark ? 'dark' : ''}>
@@ -371,6 +314,7 @@ export default function App() {
             <a href="#contact" className="text-sm underline-offset-2 hover:underline">Domina kažkas panašaus ir jus?</a>
           </div>
 
+          {/* Viršutiniai 3 */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
             {PROJECTS_TOP.map((p, i) => (
               <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
@@ -398,6 +342,7 @@ export default function App() {
             ))}
           </div>
 
+          {/* Apatiniai 3 */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {PROJECTS_BOTTOM.map((p, i) => (
               <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
@@ -580,6 +525,7 @@ export default function App() {
               </div>
             </div>
 
+            {/* Kontaktų forma su Formspree */}
             <div className="md:col-span-3 card">
               <div className="p-5">
                 <h3 className="text-lg font-semibold">Trumpa užklausa</h3>
@@ -588,22 +534,41 @@ export default function App() {
                 </p>
               </div>
               <div className="px-5 pb-5">
-                <form ref={formRef} className="grid gap-4" onSubmit={handleSubmit}>
+                <form
+                  action="https://formspree.io/f/mgvldgjb"
+                  method="POST"
+                  className="grid gap-4"
+                >
                   <div className="grid md:grid-cols-2 gap-4">
                     <Input name="name" placeholder="Vardas" required />
                     <Input name="email" type="email" placeholder="El. paštas" required />
                   </div>
                   <Input name="subject" placeholder="Tema (pvz., Drono paslaugos NT)" />
-                  <Textarea name="message" placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…" rows={5} />
+                  <Textarea
+                    name="message"
+                    placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…"
+                    rows={5}
+                    required
+                  />
+
+                  {/* Papildomi nustatymai */}
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="Nauja užklausa iš vytautasmedia.lt"
+                  />
+                  <input type="hidden" name="_language" value="lt" />
+                  <input
+                    type="hidden"
+                    name="_redirect"
+                    value="https://vytautasmedia.lt/#contact"
+                  />
 
                   <div className="flex items-center justify-between">
                     <a href="#privacy" className="text-xs underline underline-offset-2">
                       Siunčiant sutinkate su privatumo politika
                     </a>
-
-                    <Button type="submit" disabled={sendStatus === 'sending'}>
-                      {sendStatus === 'sending' ? 'Siunčiama…' : sendStatus === 'success' ? 'Išsiųsta ✅' : sendStatus === 'error' ? 'Bandykite dar kartą ❌' : 'Siųsti užklausą'}
-                    </Button>
+                    <Button type="submit">Siųsti užklausą</Button>
                   </div>
                 </form>
               </div>
