@@ -1,5 +1,5 @@
-// App.tsx — stabilus variantas be .theme klasės, su kinematografiniu hero fonu, Formspree integracija
-import { useState, FormEvent } from 'react'
+// App.tsx — stabilus variantas su veikiančiu dark mode (persistuoja), kinematografiniu hero fonu ir Formspree
+import { useState, FormEvent, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Button } from './components/ui/button'
@@ -55,8 +55,7 @@ const PROFILE = {
   },
 }
 
-const CLIENT_POINTS = [
-]
+const CLIENT_POINTS: string[] = []
 
 /* ============== Projektai ============== */
 const PROJECTS_TOP = [
@@ -196,8 +195,24 @@ function VideoModal({ url, title, poster, onClose }: { url: string; title: strin
 
 /* ============== App ============== */
 export default function App() {
-  // Paleidžiam šviesią temą kaip numatytą (kad neliktų „juodo ekrano“ jei globalūs stiliai tamsūs)
-  const [dark, setDark] = useState(false)
+  // ——— DARK MODE TVARKYMAS (veikia, prisimena pasirinktą temą) ———
+  const [dark, setDark] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false
+    const saved = localStorage.getItem('theme')
+    if (saved === 'dark' || saved === 'light') return saved === 'dark'
+    return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false
+  })
+
+  // uždedam/nuimam .dark ant <html> ir persistuojam
+  useEffect(() => {
+    const root = document.documentElement
+    if (dark) root.classList.add('dark')
+    else root.classList.remove('dark')
+    try {
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    } catch {}
+  }, [dark])
+
   const [player, setPlayer] = useState<PlayerState>(null)
 
   // Formspree
@@ -227,8 +242,8 @@ export default function App() {
   }
 
   return (
-    <div className={dark ? 'dark' : ''}>
-      {/* Pašalinam .theme; aiškiai nustatom foną ir tekstą */}
+    // išorinis wrapper nebenaudoja 'dark' — klasė dedama ant <html>
+    <div>
       <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100 transition-colors">
         {/* NAV */}
         <header className="sticky top-0 z-40 border-b border-black/10 dark:border-white/10 bg-white/70 dark:bg-black/30 backdrop-blur">
@@ -246,7 +261,7 @@ export default function App() {
               <a href="#contact" className="hover:underline">Kontaktai</a>
             </nav>
             <div className="flex items-center gap-2">
-              <button aria-label="Perjungti temą" onClick={() => setDark(!dark)} className="btn">
+              <button aria-label="Perjungti temą" onClick={() => setDark(d => !d)} className="btn">
                 {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </button>
               <a href="#contact" className="btn btn-primary hidden sm:inline-flex">
@@ -256,14 +271,14 @@ export default function App() {
           </div>
         </header>
 
-        {/* HERO su kinematografiniu fonu (saugus, be sudėtingų overlay) */}
+        {/* HERO */}
         <section
           id="hero"
           className="relative overflow-hidden border-b border-black/10 dark:border-white/10
                      bg-gradient-to-bl from-white via-white to-indigo-50
                      dark:from-white/10 dark:via-transparent dark:to-transparent"
         >
-          {/* lengva vinjetė apačioje */}
+          {/* Vinjetė apačioje */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 h-64 -z-10
                           bg-gradient-to-t from-black/40 to-transparent dark:from-black/60" />
           <div className="container py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
@@ -281,7 +296,7 @@ export default function App() {
                 </a>
               </div>
 
-              {/* Kontaktai (be tel./banko) */}
+              {/* Kontaktai */}
               <div className="mt-6 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   <div className="flex items-center gap-1">
@@ -524,7 +539,7 @@ export default function App() {
                 <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite kas Jus domina, o aš atrašysiu kaip tik galėdamas greičiau</p>
               </div>
               <div className="px-5 pb-5">
-                <form className="grid gap-4" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit}>
+                <form className="grid gap-4" action="https://formspree.io/f/mgvldgjb" method="POST" onSubmit={handleSubmit}>
                   <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
                   <input type="hidden" name="_template" value="table" />
                   <input type="hidden" name="_subject" value="Nauja užklausa — vytautasmedia.lt" />
