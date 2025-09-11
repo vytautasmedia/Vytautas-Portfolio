@@ -533,14 +533,14 @@ export default function App() {
         <section id="contact" className="container py-16">
           <div className="mb-8">
             <h2 className="text-2xl md:text-3xl font-bold">Kontaktai</h2>
-            <p className="text-neutral-600 dark:text-neutral-400">Paprasčiausia – parašyti laišką arba užpildyti formą.</p>
+            <p className="text-neutral-600 dark:text-neutral-400">Parašykite laišką ir su manimi susisieksite</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-5 items-start">
             <div className="md:col-span-2 card">
               <div className="p-5">
                 <h3 className="text-lg font-semibold">{PROFILE.brand}</h3>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">Susisiekime dėl idėjos ar komercinio projekto</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">Susisiekite su manimi dėl idėjos realizacijos</p>
               </div>
               <div className="px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="flex items-center gap-2">
@@ -563,7 +563,7 @@ export default function App() {
             <div className="md:col-span-3 card">
               <div className="p-5">
                 <h3 className="text-lg font-semibold">Trumpa užklausa</h3>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite apie projektą – atrašysiu tą pačią dieną.</p>
+                <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite kas Jus domina, o aš susisieksiu kaip tik galėdamas greičiau</p>
               </div>
               <div className="px-5 pb-5">
                 <form
@@ -577,7 +577,7 @@ export default function App() {
                     <Input placeholder="Vardas" required />
                     <Input type="email" placeholder="El. paštas" required />
                   </div>
-                  <Input placeholder="Tema (pvz., Produktų klipas)" />
+                  <Input placeholder="Tema (pvz., Drono paslaugos NT)" />
                   <Textarea placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…" rows={5} />
                   <div className="flex items-center justify-between">
                     <div className="text-xs text-neutral-500 dark:text-neutral-400">Siunčiant sutinkate su privatumo politika.</div>
