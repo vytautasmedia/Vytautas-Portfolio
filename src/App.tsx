@@ -56,7 +56,7 @@ const PROFILE = {
   phone: '+370 614 44401',
   bankName: 'Swedbank',
   bankIban: 'LT51 7300 0101 5880 3949',
-  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. 1409134',
+  ivaNote: 'Individuali veikla pagal pažymą',
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
