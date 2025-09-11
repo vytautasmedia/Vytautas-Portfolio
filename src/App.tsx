@@ -112,21 +112,18 @@ const CONTRIBUTED = [
     role: 'Montavimas',
     cover: '/covers/toyota.jpg',
     link: 'https://youtu.be/PQWHWeBxhoE',
-    tags: [''],
   },
   {
     title: 'Dextera',
     role: 'Montavimas',
     cover: '/covers/dextera.jpg',
     link: 'https://youtube.com/shorts/-T2-qEmDqkQ',
-    tags: [''],
   },
   {
     title: 'Pjazz',
     role: 'Montavimas',
     cover: '/covers/pjazz.jpg',
     link: 'https://youtube.com/shorts/HRXAf8doui4',
-    tags: [''],
   },
 ]
 
