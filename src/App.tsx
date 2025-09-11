@@ -60,7 +60,7 @@ const PROFILE = {
     facebook: 'https://www.facebook.com/vytautas.uselis06',
     youtube: 'https://www.youtube.com/@vuselis',
   },
-  clientsNote: '--------',
+  clientsNote: 'Dirbu su fiziniais ir juridiniais asmenimis. Trumpametražių vaizdo klipų filmavimas ir montavimas. Drono paslaugos.',
 }
 
 /* ============================
