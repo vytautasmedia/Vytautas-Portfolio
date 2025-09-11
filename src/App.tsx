@@ -1,4 +1,4 @@
-// App.tsx — be telefono ir banko (Swedbank) informacijos
+// App.tsx — be telefono ir banko informacijos, su sutvarkytais uždarymais ir „Dirbu su klientais, kurie:“ bloku
 
 import { useState, FormEvent } from 'react'
 import { motion } from 'framer-motion'
@@ -60,7 +60,6 @@ const PROFILE = {
     facebook: 'https://www.facebook.com/vytautas.uselis06',
     youtube: 'https://www.youtube.com/@vuselis',
   },
-  clientsNote: 'Dirbu su fiziniais ir juridiniais asmenimis. Trumpametražių vaizdo klipų filmavimas ir montavimas. Drono paslaugos.',
 }
 
 /* ============================
@@ -123,21 +122,21 @@ const PROJECTS_BOTTOM = [
 const CONTRIBUTED = [
   {
     title: 'Toyota – ėjimas, kuris keičia',
-    role: '',
+    role: 'Kitų filmuotos medžiagos montavimas',
     cover: '/covers/toyota.jpg',
     link: 'https://youtu.be/PQWHWeBxhoE',
     tags: ['Montavimas'],
   },
   {
     title: 'Dextera',
-    role: '',
+    role: 'Kitų filmuotos medžiagos montavimas',
     cover: '/covers/dextera.jpg',
     link: 'https://youtube.com/shorts/-T2-qEmDqkQ',
     tags: ['Montavimas'],
   },
   {
     title: 'Pjazz',
-    role: '',
+    role: 'Kitų filmuotos medžiagos montavimas',
     cover: '/covers/pjazz.jpg',
     link: 'https://youtube.com/shorts/HRXAf8doui4',
     tags: ['Montavimas'],
@@ -161,7 +160,7 @@ const SERVICES = [
   {
     icon: <Monitor className="h-6 w-6" />,
     name: 'Video montavimas',
-    bullets: ['Jūsų filmuotos video medžiagos montavimas', 'Spalvų korekcija, Garsas', 'Subtitrai'],
+    bullets: ['Jūsų filmuotos video medžiagos montavimas', 'Spalvų korekcija, garsas', 'Subtitrai'],
     price: 'Kaina pagal susitarimą',
   },
   {
@@ -311,7 +310,7 @@ export default function App() {
                 </a>
               </div>
 
-              {/* Kontaktų blokas (pašalintas telefonas ir bankas) */}
+              {/* Kontaktų blokas (be telefono ir banko) */}
               <div className="mt-6 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   <div className="flex items-center gap-1">
@@ -512,10 +511,21 @@ export default function App() {
                 </div>
               </div>
 
-       <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
-  <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Dirbu su klientais kurie:</div>
-  <p>{PROFILE.clientsNote}</p>
-</div>
+              {/* Dirbu su klientais... */}
+              <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
+                <p className="font-semibold text-neutral-800 dark:text-neutral-200">
+                  Dirbu su klientais, kurie:
+                </p>
+                <div className="mt-1 space-y-1 leading-relaxed">
+                  <p>• Fiziniai ir juridiniai asmenys.</p>
+                  <p>• Trumpametražių vaizdo klipų filmavimas ir montavimas.</p>
+                  <p>• Drono paslaugos.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CONTACT */}
         <section id="contact" className="container py-16">
           <div className="mb-8">
