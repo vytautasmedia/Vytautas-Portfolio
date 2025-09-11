@@ -513,12 +513,15 @@ export default function App() {
               </div>
 
               <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
-                <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Dirbu su klientais kurie:</div>
-                <p>{PROFILE.clientsNote}</p>
-              </div>
-            </div>
-          </div>
-        </section>
+  <p className="font-semibold text-neutral-800 dark:text-neutral-200">
+    Dirbu su klientais, kurie:
+  </p>
+  <div className="mt-1 space-y-1 leading-relaxed">
+    <p>• Fiziniai ir juridiniai asmenys.</p>
+    <p>• Trumpametražių vaizdo klipų filmavimas ir montavimas.</p>
+    <p>• Drono paslaugos.</p>
+  </div>
+</div>
 
         {/* CONTACT */}
         <section id="contact" className="container py-16">
