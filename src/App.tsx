@@ -294,7 +294,10 @@ export default function App() {
         </header>
 
         {/* HERO */}
-        <section id="hero" className="border-b border-black/10 dark:border-white/10">
+        <section
+  id="hero"
+  className="border-b border-black/10 dark:border-white/10 bg-gradient-to-b from-white to-gray-100"
+>
           <div className="container py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <h1 className="mt-4 text-4xl md:text-6xl font-bold leading-tight">{PROFILE.name}</h1>
