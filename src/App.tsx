@@ -54,6 +54,10 @@ const PROFILE = {
     youtube: 'https://www.youtube.com/@vuselis',
   },
 }
+
+const CLIENT_POINTS = [
+]
+
 /* ============== Projektai ============== */
 const PROJECTS_TOP = [
   {
