@@ -514,12 +514,9 @@ export default function App() {
               {/* Dirbu su klientais... */}
               <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
                 <p className="font-semibold text-neutral-800 dark:text-neutral-200">
-                  Dirbu su klientais, kurie:
+                  Dirbu su fiziniais ir juridiniais asmenimis
                 </p>
                 <div className="mt-1 space-y-1 leading-relaxed">
-                  <p>• Fiziniai ir juridiniai asmenys.</p>
-                  <p>• Trumpametražių vaizdo klipų filmavimas ir montavimas.</p>
-                  <p>• Drono paslaugos.</p>
                 </div>
               </div>
             </div>
