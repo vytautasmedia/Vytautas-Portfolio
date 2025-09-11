@@ -599,16 +599,19 @@ export default function App() {
         </section>
 
         {/* FOOTER */}
-        <footer className="border-t border-black/10 dark:border-white/10">
-          <div className="container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3">
-            <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
-            <div className="flex items-center gap-4">
-              <a href="#hero" className="underline underline-offset-2">Į viršų</a>
-              <a href={PROFILE.cvUrl} className="underline underline-offset-2">CV</a>
-              <a href="#" className="underline underline-offset-2">Privatumo politika</a>
-            </div>
-          </div>
-        </footer>
+<footer className="border-t border-black/10 dark:border-white/10">
+  <div className="container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3">
+    <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
+    <div className="flex items-center gap-4">
+      <a href="#hero" className="underline underline-offset-2">Į viršų</a>
+      <a href={PROFILE.cvUrl} className="underline underline-offset-2">CV</a>
+      <Link to="/privatumo-politika" className="underline underline-offset-2">
+        Privatumo politika
+      </Link>
+    </div>
+  </div>
+</footer>
+
 
         {/* VIDEO MODALAS */}
         {player && (
