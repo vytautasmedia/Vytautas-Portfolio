@@ -40,6 +40,7 @@ function getYouTubeId(url: string): string | null {
     return null
   }
 }
+
 const isYoutubeUrl = (url?: string) => !!(url && getYouTubeId(url))
 
 /* ============================
@@ -51,10 +52,10 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '+370 6xx xxxxx',                 // <- įrašyk savo
-  bankName: 'Swedbank',                    // pvz.
-  bankIban: 'LTxx xxxx xxxx xxxx xxxx',    // <- įrašyk savo IBAN
-  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. ______', // <- nr.
+  phone: '+370 614 44401', // <- įrašyk savo
+  bankName: 'Swedbank', // pvz.
+  bankIban: 'LT51 7300 0101 5880 3949', // <- įrašyk savo IBAN
+  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. 1409134', // <- nr.
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
@@ -62,8 +63,7 @@ const PROFILE = {
     youtube: 'https://www.youtube.com/@vuselis',
   },
   // Po „Kodėl rinktis mane?“ mažas tekstas – laisvai redaguok
-  clientsNote:
-    'Ieškau smulkaus ir vidutinio verslo, sporto klubų, renginių organizatorių ir kūrėjų. Dirbu su prekių ženklais, paslaugomis ir sporto komandomis – nuo idėjos iki finalinio montažo.',
+  clientsNote: '--------',
 }
 
 /* ============================
@@ -175,7 +175,10 @@ const SERVICES = [
   },
 ]
 
-const ITEM_VARIANTS = { hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0 } }
+const ITEM_VARIANTS = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0 },
+}
 
 /* ============================
    Video modalas (YouTube embed)
@@ -221,7 +224,14 @@ function VideoModal({
                 allowFullScreen
               />
             ) : (
-              <video src={url} poster={poster} controls playsInline autoPlay className="w-full h-full" />
+              <video
+                src={url}
+                poster={poster}
+                controls
+                playsInline
+                autoPlay
+                className="w-full h-full"
+              />
             )}
           </div>
           <div className="px-4 py-3 text-sm text-neutral-200">{title}</div>
@@ -251,13 +261,25 @@ export default function App() {
               <span>{PROFILE.brand}</span>
             </a>
             <nav className="hidden md:flex items-center gap-6 text-sm">
-              <a href="#projects" className="hover:underline">Darbai</a>
-              <a href="#services" className="hover:underline">Paslaugos</a>
-              <a href="#about" className="hover:underline">Apie</a>
-              <a href="#contact" className="hover:underline">Kontaktai</a>
+              <a href="#projects" className="hover:underline">
+                Darbai
+              </a>
+              <a href="#services" className="hover:underline">
+                Paslaugos
+              </a>
+              <a href="#about" className="hover:underline">
+                Apie
+              </a>
+              <a href="#contact" className="hover:underline">
+                Kontaktai
+              </a>
             </nav>
             <div className="flex items-center gap-2">
-              <button aria-label="Perjungti temą" onClick={() => setDark(!dark)} className="btn">
+              <button
+                aria-label="Perjungti temą"
+                onClick={() => setDark(!dark)}
+                className="btn"
+              >
                 {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </button>
               <a href="#contact">
@@ -272,12 +294,23 @@ export default function App() {
         {/* HERO */}
         <section id="hero" className="border-b border-black/10 dark:border-white/10">
           <div className="container py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <h1 className="mt-4 text-4xl md:text-6xl font-bold leading-tight">{PROFILE.name}</h1>
-              <p className="mt-2 text-lg text-neutral-500 dark:text-neutral-400">{PROFILE.title}</p>
-              <p className="mt-4 text-base text-neutral-600 dark:text-neutral-300">Kuriu aiškias, estetiškas ir jausmų kupinas istorijas</p>
-              <p className="mt-2 text-base text-neutral-600 dark:text-neutral-300">Siūlau kūrybinių idėjų realizaciją pagal Jūsų norus</p>
-
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="mt-4 text-4xl md:text-6xl font-bold leading-tight">
+                {PROFILE.name}
+              </h1>
+              <p className="mt-2 text-lg text-neutral-500 dark:text-neutral-400">
+                {PROFILE.title}
+              </p>
+              <p className="mt-4 text-base text-neutral-600 dark:text-neutral-300">
+                Kuriu aiškias, estetiškas ir jausmų kupinas istorijas
+              </p>
+              <p className="mt-2 text-base text-neutral-600 dark:text-neutral-300">
+                Siūlau kūrybinių idėjų realizaciją pagal Jūsų norus
+              </p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
                 <a href="#projects">
                   <button className="btn btn-primary">
@@ -286,8 +319,7 @@ export default function App() {
                 </a>
                 <a href="#contact">
                   <button className="btn">
-                    <Mail className="mr-2 h-4 w-4" />
-                    Susisiekite su manimi
+                    <Mail className="mr-2 h-4 w-4" /> Susisiekite su manimi
                   </button>
                 </a>
               </div>
@@ -299,37 +331,66 @@ export default function App() {
                     <MapPin className="h-4 w-4" /> {PROFILE.location}
                   </div>
                   <div className="flex items-center gap-1">
-                    <Mail className="h-4 w-4" />
-                    <a href={`mailto:${PROFILE.email}`} className="underline">{PROFILE.email}</a>
+                    <Mail className="h-4 w-4" />{' '}
+                    <a href={`mailto:${PROFILE.email}`} className="underline">
+                      {PROFILE.email}
+                    </a>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Phone className="h-4 w-4" />
-                    <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline">{PROFILE.phone}</a>
+                    <Phone className="h-4 w-4" />{' '}
+                    <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline">
+                      {PROFILE.phone}
+                    </a>
                   </div>
                 </div>
-
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   <div className="flex items-center gap-1">
-                    <Landmark className="h-4 w-4" />
-                    <span>{PROFILE.bankName}: {PROFILE.bankIban}</span>
+                    <Landmark className="h-4 w-4" />{' '}
+                    <span>
+                      {PROFILE.bankName}: {PROFILE.bankIban}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <FileText className="h-4 w-4" />
-                    <span>{PROFILE.ivaNote}</span>
+                    <FileText className="h-4 w-4" /> <span>{PROFILE.ivaNote}</span>
                   </div>
                 </div>
-
                 <div className="pt-1 flex items-center gap-3">
-                  <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer"><Instagram className="h-5 w-5" /></a>
-                  <a href={PROFILE.socials.facebook}  target="_blank" rel="noopener noreferrer"><Facebook  className="h-5 w-5" /></a>
-                  <a href={PROFILE.socials.youtube}   target="_blank" rel="noopener noreferrer"><Youtube   className="h-5 w-5" /></a>
+                  <a
+                    href={PROFILE.socials.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Instagram className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={PROFILE.socials.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Facebook className="h-5 w-5" />
+                  </a>
+                  <a
+                    href={PROFILE.socials.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Youtube className="h-5 w-5" />
+                  </a>
                 </div>
               </div>
             </motion.div>
-
-            <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} className="relative">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
               <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl border border-black/10 dark:border-white/10">
-                <img src="/covers/vmlogo.jpg" alt="Portfolio hero" className="h-full w-full object-cover" />
+                <img
+                  src="/covers/vmlogo.jpg"
+                  alt="Portfolio hero"
+                  className="h-full w-full object-cover"
+                />
               </div>
             </motion.div>
           </div>
@@ -340,18 +401,36 @@ export default function App() {
           <div className="mb-8 flex items-end justify-between">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold">Darbų pavyzdžiai</h2>
-              <p className="text-neutral-600 dark:text-neutral-400">Su meile, atkaklumu ir siekiu geriausio</p>
+              <p className="text-neutral-600 dark:text-neutral-400">
+                Su meile, atkaklumu ir siekiu geriausio
+              </p>
             </div>
-            <a href="#contact" className="text-sm underline-offset-2 hover:underline">Domina kažkas panašaus ir jus?</a>
+            <a
+              href="#contact"
+              className="text-sm underline-offset-2 hover:underline"
+            >
+              Domina kažkas panašaus ir jus?
+            </a>
           </div>
 
           {/* Viršutiniai 3 */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-12">
             {PROJECTS_TOP.map((p, i) => (
-              <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
+              <motion.div
+                key={p.title}
+                variants={ITEM_VARIANTS}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+              >
                 <div className="card overflow-hidden">
                   <div className="relative">
-                    <img src={p.cover} alt={p.title} className="aspect-video w-full object-cover transition-transform duration-300 hover:scale-105" />
+                    <img
+                      src={p.cover}
+                      alt={p.title}
+                      className="aspect-video w-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                   </div>
                   <div className="p-5 space-y-1">
@@ -360,258 +439,16 @@ export default function App() {
                   </div>
                   <div className="px-5 pb-5">
                     <div className="mb-3 flex flex-wrap gap-2">
-                      {p.tags.map(t => (
-                        <span key={t} className="rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300">{t}</span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button onClick={() => setPlayer({ url: p.link, title: p.title, poster: p.cover })} className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition">Peržiūrėti</button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Apatiniai 3 */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {PROJECTS_BOTTOM.map((p, i) => (
-              <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
-                <div className="card overflow-hidden">
-                  <div className="relative">
-                    <img src={p.cover} alt={p.title} className="aspect-video w-full object-cover transition-transform duration-300 hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  </div>
-                  <div className="p-5 space-y-1">
-                    <h3 className="text-lg font-semibold">{p.title}</h3>
-                    <p className="text-sm text-neutral-500 dark:text-neutral-400">{p.role}</p>
-                  </div>
-                  <div className="px-5 pb-5">
-                    <div className="mb-3 flex flex-wrap gap-2">
-                      {p.tags.map(t => (
-                        <span key={t} className="rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300">{t}</span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button onClick={() => setPlayer({ url: p.link, title: p.title, poster: p.cover })} className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition">Peržiūrėti</button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* DARBAI PRIE KURIŲ PRISIDĖJAU */}
-        <section className="container py-12">
-          <div className="mb-6">
-            <h3 className="text-xl md:text-2xl font-semibold">Darbai prie kurių prisidėjau</h3>
-            <p className="text-sm text-neutral-600 dark:text-neutral-400">Partnerių filmuotos vaizdinės medžiagos montavimas</p>
-          </div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {CONTRIBUTED.map((p, i) => (
-              <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
-                <div className="card overflow-hidden">
-                  <div className="relative">
-                    <img src={p.cover} alt={p.title} className="aspect-video w-full object-cover transition-transform duration-300 hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  </div>
-                  <div className="p-5 space-y-1">
-                    <h3 className="text-lg font-semibold">{p.title}</h3>
-                    <p className="text-sm text-neutral-500 dark:text-neutral-400">{p.role}</p>
-                  </div>
-                  <div className="px-5 pb-5">
-                    <div className="mb-3 flex flex-wrap gap-2">
-                      {p.tags.map(t => (
-                        <span key={t} className="rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300">{t}</span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <button onClick={() => setPlayer({ url: p.link, title: p.title, poster: p.cover })} className="px-3 py-1 rounded-lg bg-white text-black font-medium hover:bg-gray-200 transition">Peržiūrėti</button>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* PASLAUGOS */}
-        <section id="services" className="border-y border-black/10 dark:border-white/10">
-          <div className="container py-16">
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-bold">Paslaugos</h2>
-              <p className="text-neutral-600 dark:text-neutral-400">Lanksčūs paketai verslui, sporto klubams ir kūrėjams.</p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-3">
-              {SERVICES.map((s, i) => (
-                <motion.div
-                  key={s.name}
-                  variants={ITEM_VARIANTS}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.05 }}
-                >
-                  <div className="card h-full">
-                    <div className="p-5 flex h-full flex-col">
-                      <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-black/10 dark:border-white/10">
-                        {s.icon}
-                      </div>
-
-                      <h3 className="text-lg font-semibold">{s.name}</h3>
-
-                      <ul className="mt-2 space-y-1 text-sm text-neutral-500 dark:text-neutral-400">
-                        {s.bullets.map((b) => (
-                          <li key={b} className="leading-relaxed">• {b}</li>
-                        ))}
-                      </ul>
-
-                      <div className="mt-auto pt-4">
-                        <span className="inline-flex items-center rounded-full border border-black/10 dark:border-white/10 px-3 py-1 text-xs font-medium tracking-wide text-neutral-700 dark:text-neutral-200">
-                          {s.price}
+                      {p.tags.map((t) => (
+                        <span
+                          key={t}
+                          className="rounded-full border border-black/10 dark:border-white/10 px-2 py-0.5 text-xs text-neutral-600 dark:text-neutral-300"
+                        >
+                          {t}
                         </span>
-                      </div>
+                      ))}
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ABOUT */}
-        <section id="about" className="container py-16">
-          <div className="grid md:grid-cols-5 gap-8 items-start">
-            <div className="md:col-span-3">
-              <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
-
-              {/* Aprašymas – kiekvienas sakinys naujoje eilutėje */}
-              <div className="mt-3 text-neutral-600 dark:text-neutral-300 space-y-2">
-                <p>Esu Vytautas Uselis, kuriantis turinį Klaipėdoje ir už jos ribų.</p>
-                <p>Kuriu vaizdinį turinį susijusį su įvairiais klientais.</p>
-                <p>Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą iki finalinio etapo.</p>
-                <p>Man svarbus aiškumas, rezultatas ir klientas.</p>
-                <p>Darbą atlieku greitai ir kokybiškai.</p>
-              </div>
-
-              {/* Akcentinis CTA */}
-              <div className="mt-6 text-xl font-semibold">
-                <span className="bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent">
-                  Turi idėją, bet nežinai kaip ją įgyvendinti?
-                </span>
-                <span className="block text-neutral-800 dark:text-neutral-200">
-                  Susisiek – kartu sukursime ką nors nerealaus.
-                </span>
-              </div>
-            </div>
-
-            <div className="md:col-span-2">
-              <div className="card">
-                <div className="p-5">
-                  <h3 className="text-lg font-semibold">Kodėl rinktis mane?</h3>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400">Trumpai apie darbo principus</p>
-                </div>
-                <div className="px-5 pb-5 space-y-3 text-sm text-neutral-600 dark:text-neutral-300">
-                  <div className="flex items-start gap-3"><Sparkles className="mt-0.5 h-4 w-4" /> Aiškus kūrybinis sprendimas ir logiška kaina</div>
-                  <div className="flex items-start gap-3"><Rocket className="mt-0.5 h-4 w-4" /> Kokybės užtvirtinimas ir tenkinantis rezultatas</div>
-                  <div className="flex items-start gap-3"><BadgeCheck className="mt-0.5 h-4 w-4" /> Fokusas į peržiūras, pardavimus, susidomėjimą</div>
-                </div>
-              </div>
-
-              {/* Nauja maža sekcija: Ko ieškau / su kuo dirbu */}
-              <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
-                <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Ko ieškau / su kuo dirbu</div>
-                <p>{PROFILE.clientsNote}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section id="contact" className="container py-16">
-          <div className="mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold">Kontaktai</h2>
-            <p className="text-neutral-600 dark:text-neutral-400">Paprasčiausia – parašyti laišką arba užpildyti formą.</p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-5 items-start">
-            <div className="md:col-span-2 card">
-              <div className="p-5">
-                <h3 className="text-lg font-semibold">{PROFILE.brand}</h3>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">Susisiekime dėl idėjos ar komercinio projekto</p>
-              </div>
-              <div className="px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300">
-                <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline underline-offset-2">{PROFILE.email}</a>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" /> <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline underline-offset-2">{PROFILE.phone}</a>
-                </div>
-                <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> {PROFILE.location}</div>
-                <div className="flex items-center gap-2"><Landmark className="h-4 w-4" /> {PROFILE.bankName}: {PROFILE.bankIban}</div>
-                <div className="flex items-center gap-2"><FileText className="h-4 w-4" /> {PROFILE.ivaNote}</div>
-                <div className="flex items-center gap-3 pt-2">
-                  <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Instagram</a>
-                  <a href={PROFILE.socials.facebook}  target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Facebook</a>
-                  <a href={PROFILE.socials.youtube}   target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">YouTube</a>
-                </div>
-              </div>
-            </div>
-
-            <div className="md:col-span-3 card">
-              <div className="p-5">
-                <h3 className="text-lg font-semibold">Trumpa užklausa</h3>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite apie projektą – atrašysiu tą pačią dieną.</p>
-              </div>
-              <div className="px-5 pb-5">
-                <form
-                  className="grid gap-4"
-                  onSubmit={(e) => {
-                    e.preventDefault()
-                    alert('Ačiū! Forma demonstracinė.')
-                  }}
-                >
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Input placeholder="Vardas" required />
-                    <Input type="email" placeholder="El. paštas" required />
-                  </div>
-                  <Input placeholder="Tema (pvz., Produktų klipas)" />
-                  <Textarea placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…" rows={5} />
-                  <div className="flex items-center justify-between">
-                    <div className="text-xs text-neutral-500 dark:text-neutral-400">Siunčiant sutinkate su privatumo politika.</div>
-                    <Button type="submit">Siųsti užklausą</Button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* FOOTER */}
-        <footer className="border-t border-black/10 dark:border-white/10">
-          <div className="container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3">
-            <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
-            <div className="flex items-center gap-4">
-              <a href="#hero" className="underline underline-offset-2">Į viršų</a>
-              <a href={PROFILE.cvUrl} className="underline underline-offset-2">CV</a>
-              <a href="#" className="underline underline-offset-2">Privatumo politika</a>
-            </div>
-          </div>
-        </footer>
-
-        {/* VIDEO MODALAS */}
-        {player && (
-          <VideoModal
-            url={player.url}
-            title={player.title}
-            poster={player.poster}
-            onClose={() => setPlayer(null)}
-          />
-        )}
-      </div>
-    </div>
-  )
-}
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() =>
+                          setPlayer({ url: p.link, title: p.title,
