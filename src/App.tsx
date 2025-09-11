@@ -1,3 +1,5 @@
+// App.tsx — be telefono ir banko (Swedbank) informacijos
+
 import { useState, FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
@@ -19,8 +21,6 @@ import {
   ArrowRight,
   ChevronRight,
   Monitor,
-  Phone,
-  Landmark,
   FileText,
 } from 'lucide-react'
 
@@ -53,9 +53,6 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '+370 614 44401',
-  bankName: 'Swedbank',
-  bankIban: 'LT51 7300 0101 5880 3949',
   ivaNote: 'Individuali veikla pagal pažymą',
   cvUrl: '#',
   socials: {
@@ -314,7 +311,7 @@ export default function App() {
                 </a>
               </div>
 
-              {/* Kontaktų blokas su tel, banku ir IV pažyma */}
+              {/* Kontaktų blokas (pašalintas telefonas ir bankas) */}
               <div className="mt-6 space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
                   <div className="flex items-center gap-1">
@@ -323,14 +320,8 @@ export default function App() {
                   <div className="flex items-center gap-1">
                     <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline">{PROFILE.email}</a>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Phone className="h-4 w-4" /> <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline">{PROFILE.phone}</a>
-                  </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-                  <div className="flex items-center gap-1">
-                    <Landmark className="h-4 w-4" /> <span>{PROFILE.bankName}: {PROFILE.bankIban}</span>
-                  </div>
                   <div className="flex items-center gap-1">
                     <FileText className="h-4 w-4" /> <span>{PROFILE.ivaNote}</span>
                   </div>
@@ -544,11 +535,7 @@ export default function App() {
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline underline-offset-2">{PROFILE.email}</a>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" /> <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline underline-offset-2">{PROFILE.phone}</a>
-                </div>
                 <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> {PROFILE.location}</div>
-                <div className="flex items-center gap-2"><Landmark className="h-4 w-4" /> {PROFILE.bankName}: {PROFILE.bankIban}</div>
                 <div className="flex items-center gap-2"><FileText className="h-4 w-4" /> {PROFILE.ivaNote}</div>
                 <div className="flex items-center gap-3 pt-2">
                   <a href={PROFILE.socials.instagram} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">Instagram</a>
@@ -600,18 +587,17 @@ export default function App() {
         </section>
 
         {/* FOOTER */}
-<footer className="border-t border-black/10 dark:border-white/10">
-  <div className="container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3">
-    <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
-    <div className="flex items-center gap-4">
-      <a href="#hero" className="underline underline-offset-2">Į viršų</a>
-      <Link to="/privatumo-politika" className="underline underline-offset-2">
-        Privatumo politika
-      </Link>
-    </div>
-  </div>
-</footer>
-
+        <footer className="border-t border-black/10 dark:border-white/10">
+          <div className="container py-10 text-sm text-neutral-600 dark:text-neutral-300 flex flex-col md:flex-row items-center justify-between gap-3">
+            <div>© {new Date().getFullYear()} {PROFILE.brand}. Visos teisės saugomos.</div>
+            <div className="flex items-center gap-4">
+              <a href="#hero" className="underline underline-offset-2">Į viršų</a>
+              <Link to="/privatumo-politika" className="underline underline-offset-2">
+                Privatumo politika
+              </Link>
+            </div>
+          </div>
+        </footer>
 
         {/* VIDEO MODALAS */}
         {player && (
