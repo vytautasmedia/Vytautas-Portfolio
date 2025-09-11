@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
@@ -52,17 +52,16 @@ const PROFILE = {
   title: 'Videografas • Kūrėjas • Social Media',
   location: 'Klaipėda, Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
-  phone: '+370 614 44401', // <- įrašyk savo
-  bankName: 'Swedbank', // pvz.
-  bankIban: 'LT51 7300 0101 5880 3949', // <- įrašyk savo IBAN
-  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. 1409134', // <- nr.
+  phone: '+370 614 44401',
+  bankName: 'Swedbank',
+  bankIban: 'LT51 7300 0101 5880 3949',
+  ivaNote: 'Darbas pagal individualią veiklą, paž. nr. 1409134',
   cvUrl: '#',
   socials: {
     instagram: 'https://www.instagram.com/_vytautasmedia/',
     facebook: 'https://www.facebook.com/vytautas.uselis06',
     youtube: 'https://www.youtube.com/@vuselis',
   },
-  // Po „Kodėl rinktis mane?“ mažas tekstas – laisvai redaguok
   clientsNote: '--------',
 }
 
@@ -241,6 +240,32 @@ function VideoModal({
 export default function App() {
   const [dark, setDark] = useState(true)
   const [player, setPlayer] = useState<PlayerState>(null)
+
+  // === Formspree (tavo ID jau įdėtas) ===
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mgvldgjb'
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'succeeded' | 'error'>('idle')
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setFormStatus('submitting')
+    try {
+      const form = e.currentTarget
+      const data = new FormData(form)
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      })
+      if (res.ok) {
+        setFormStatus('succeeded')
+        form.reset()
+      } else {
+        setFormStatus('error')
+      }
+    } catch {
+      setFormStatus('error')
+    }
+  }
 
   return (
     <div className={dark ? 'dark' : ''}>
@@ -464,7 +489,6 @@ export default function App() {
           <div className="grid md:grid-cols-5 gap-8 items-start">
             <div className="md:col-span-3">
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
-              {/* Aprašymas – kiekvienas sakinys naujoje eilutėje */}
               <div className="mt-3 text-neutral-600 dark:text-neutral-300 space-y-2">
                 <p>Esu Vytautas Uselis, kuriantis turinį Klaipėdoje ir už jos ribų.</p>
                 <p>Kuriu vaizdinį turinį susijusį su įvairiais klientais.</p>
@@ -473,7 +497,6 @@ export default function App() {
                 <p>Darbą atlieku greitai ir kokybiškai.</p>
               </div>
 
-              {/* Akcentinis CTA */}
               <div className="mt-6 text-xl font-semibold">
                 <span className="bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent">
                   Turi idėją, bet nežinai kaip ją įgyvendinti?
@@ -497,7 +520,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Nauja maža sekcija: Ko ieškau / su kuo dirbu */}
               <div className="mt-4 rounded-2xl border border-black/10 dark:border-white/10 p-4 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="mb-1 font-medium text-neutral-800 dark:text-neutral-200">Dirbu su klientais kurie:</div>
                 <p>{PROFILE.clientsNote}</p>
@@ -541,17 +563,35 @@ export default function App() {
                 <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite kas Jus domina, o aš atrašysiu kaip tik galėdamas greičiau</p>
               </div>
               <div className="px-5 pb-5">
-                <form className="grid gap-4" onSubmit={(e) => { e.preventDefault(); alert('Ačiū! Forma demonstracinė.') }}>
+                <form className="grid gap-4" action={FORMSPREE_ENDPOINT} method="POST" onSubmit={handleSubmit}>
+                  {/* Honeypot anti-spam */}
+                  <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
+
+                  {/* Laiško formatas ir antraštė */}
+                  <input type="hidden" name="_template" value="table" />
+                  <input type="hidden" name="_subject" value="Nauja užklausa — vytautasmedia.lt" />
+                  {/* <input type="hidden" name="_redirect" value="https://vytautasmedia.lt/thank-you" /> */}
+
                   <div className="grid md:grid-cols-2 gap-4">
-                    <Input placeholder="Vardas" required />
-                    <Input type="email" placeholder="El. paštas" required />
+                    <Input name="name" placeholder="Vardas" required />
+                    <Input name="email" type="email" placeholder="El. paštas" required />
                   </div>
-                  <Input placeholder="Tema (pvz., Drono paslaugos NT)" />
-                  <Textarea placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…" rows={5} />
+                  <Input name="subject" placeholder="Tema (pvz., Drono paslaugos NT)" />
+                  <Textarea name="message" placeholder="Trumpai apie idėją, formatą, terminą, biudžetą…" rows={5} required />
+
                   <div className="flex items-center justify-between">
                     <div className="text-xs text-neutral-500 dark:text-neutral-400">Siunčiant sutinkate su privatumo politika.</div>
-                    <Button type="submit">Siųsti užklausą</Button>
+                    <Button type="submit" disabled={formStatus==='submitting'}>
+                      {formStatus==='submitting' ? 'Siunčiama…' : formStatus==='succeeded' ? 'Išsiųsta ✓' : 'Siųsti užklausą'}
+                    </Button>
                   </div>
+
+                  {formStatus==='succeeded' && (
+                    <p className="text-sm mt-2 text-green-600 dark:text-green-400">Ačiū! Jūsų žinutė gauta. Atrašysiu kaip įmanoma greičiau.</p>
+                  )}
+                  {formStatus==='error' && (
+                    <p className="text-sm mt-2 text-red-600 dark:text-red-400">Įvyko klaida. Bandykite dar kartą arba parašykite tiesiogiai el. paštu.</p>
+                  )}
                 </form>
               </div>
             </div>
