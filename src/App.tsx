@@ -197,7 +197,9 @@ function VideoModal({
   onClose: () => void
 }) {
   const ytId = isYoutubeUrl(url) ? getYouTubeId(url) : null
-  const embed = ytId ? https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1&playsinline=1 : null
+  const embed = ytId
+    ? `https://www.youtube.com/embed/${ytId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`
+    : null
 
   return (
     <div
@@ -206,6 +208,7 @@ function VideoModal({
     >
       <div className="relative w-full max-w-4xl" onClick={(e) => e.stopPropagation()}>
         <button
+          aria-label="Užverti vaizdo modalą"
           onClick={onClose}
           className="absolute -top-10 right-0 rounded-lg border border-white/20 px-3 py-1 text-sm text-white hover:bg-white/10"
         >
@@ -261,10 +264,8 @@ export default function App() {
               <button aria-label="Perjungti temą" onClick={() => setDark(!dark)} className="btn">
                 {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </button>
-              <a href="#contact">
-                <button className="btn btn-primary hidden sm:inline-flex">
-                  Siųsti užklausą <ChevronRight className="ml-1 h-4 w-4" />
-                </button>
+              <a href="#contact" className="btn btn-primary hidden sm:inline-flex">
+                Siųsti užklausą <ChevronRight className="ml-1 h-4 w-4" />
               </a>
             </div>
           </div>
@@ -279,11 +280,11 @@ export default function App() {
               <p className="mt-4 text-base text-neutral-600 dark:text-neutral-300">Kuriu aiškias, estetiškas ir jausmų kupinas istorijas</p>
               <p className="mt-2 text-base text-neutral-600 dark:text-neutral-300">Siūlau kūrybinių idėjų realizaciją pagal Jūsų norus</p>
               <div className="mt-6 flex flex-wrap items-center gap-3">
-                <a href="#projects">
-                  <button className="btn btn-primary"> Peržiūrėti darbus <ArrowRight className="ml-1 h-4 w-4" /> </button>
+                <a href="#projects" className="btn btn-primary">
+                  Peržiūrėti darbus <ArrowRight className="ml-1 h-4 w-4" />
                 </a>
-                <a href="#contact">
-                  <button className="btn"> <Mail className="mr-2 h-4 w-4" /> Susisiekite su manimi </button>
+                <a href="#contact" className="btn">
+                  <Mail className="mr-2 h-4 w-4" /> Susisiekite su manimi
                 </a>
               </div>
 
@@ -294,10 +295,10 @@ export default function App() {
                     <MapPin className="h-4 w-4" /> {PROFILE.location}
                   </div>
                   <div className="flex items-center gap-1">
-                    <Mail className="h-4 w-4" /> <a href={mailto:${PROFILE.email}} className="underline">{PROFILE.email}</a>
+                    <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline">{PROFILE.email}</a>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Phone className="h-4 w-4" /> <a href={tel:${PROFILE.phone.replace(/\s/g, '')}} className="underline">{PROFILE.phone}</a>
+                    <Phone className="h-4 w-4" /> <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline">{PROFILE.phone}</a>
                   </div>
                 </div>
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
@@ -518,10 +519,10 @@ export default function App() {
               </div>
               <div className="px-5 pb-5 space-y-4 text-sm text-neutral-600 dark:text-neutral-300">
                 <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4" /> <a href={mailto:${PROFILE.email}} className="underline underline-offset-2">{PROFILE.email}</a>
+                  <Mail className="h-4 w-4" /> <a href={`mailto:${PROFILE.email}`} className="underline underline-offset-2">{PROFILE.email}</a>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Phone className="h-4 w-4" /> <a href={tel:${PROFILE.phone.replace(/\s/g, '')}} className="underline underline-offset-2">{PROFILE.phone}</a>
+                  <Phone className="h-4 w-4" /> <a href={`tel:${PROFILE.phone.replace(/\s/g, '')}`} className="underline underline-offset-2">{PROFILE.phone}</a>
                 </div>
                 <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> {PROFILE.location}</div>
                 <div className="flex items-center gap-2"><Landmark className="h-4 w-4" /> {PROFILE.bankName}: {PROFILE.bankIban}</div>
@@ -540,7 +541,7 @@ export default function App() {
                 <p className="text-sm text-neutral-500 dark:text-neutral-400">Papasakokite kas Jus domina, o aš atrašysiu kaip tik galėdamas greičiau</p>
               </div>
               <div className="px-5 pb-5">
-                <form className="grid gap-4" onSubmit={(e) => { e.preventDefault() alert('Ačiū! Forma demonstracinė.') }}>
+                <form className="grid gap-4" onSubmit={(e) => { e.preventDefault(); alert('Ačiū! Forma demonstracinė.') }}>
                   <div className="grid md:grid-cols-2 gap-4">
                     <Input placeholder="Vardas" required />
                     <Input type="email" placeholder="El. paštas" required />
