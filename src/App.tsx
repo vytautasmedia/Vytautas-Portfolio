@@ -93,14 +93,14 @@ const PROJECTS_BOTTOM = [
   {
     title: 'Vestuvės sodyboje Belaiko',
     role: 'Video filmavimas / Montavimas / Dronas',
-    cover: '/covers/purles.jpg',
+    cover: '/covers/belaiko.png',
     link: 'https://youtube.com/shorts/NwodhYKLHJA',
     tags: ['Vestuvės', 'Turizmas', 'Reklama'],
   },
   {
     title: 'Toolrenta | Pastolių montavimas ',
     role: 'Video filmavimas / Montavimas / Dronas',
-    cover: '/covers/dziugelis.jpg',
+    cover: '/covers/toolrenta.png',
     link: 'https://youtube.com/shorts/15TzXgtX9vU',
     tags: ['Statybos', 'Reklama'],
   },
