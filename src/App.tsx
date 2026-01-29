@@ -380,7 +380,7 @@ export default function App() {
           </div>
 
           {/* Apatiniai 3 */}
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="flex flex-col items-center gap-10">
             {PROJECTS_BOTTOM.map((p, i) => (
               <motion.div key={p.title} variants={ITEM_VARIANTS} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.4, delay: i * 0.05 }}>
                 <div className="card overflow-hidden">
