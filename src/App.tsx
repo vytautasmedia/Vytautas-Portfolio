@@ -69,14 +69,14 @@ const PROJECTS_TOP = [
   {
     title: 'Lithuania | Gargždai',
     role: 'Video filmavimas / Dronas / Montavimas',
-    cover: '/covers/grg.jpg',
+    cover: '/covers/gargzdai.jpg',
     link: 'https://www.youtube.com/watch?v=IqY5m8-AQcg',
     tags: ['Lietuva', 'Gamta', 'Kraštovaizdis'],
   },
   {
     title: 'Gargždų Banga - Dažasvydis',
     role: 'Video filmavimas / Montavimas / Reklama',
-    cover: '/covers/banga.jpg',
+    cover: '/covers/dazasvydis.jpg',
     link: 'https://youtube.com/shorts/nhFanEVn2zQ',
     tags: ['Contribee', 'Sportas', 'Dažasvydis'],
   },
@@ -86,7 +86,7 @@ const PROJECTS_BOTTOM = [
   {
     title: 'Belaiko itališkos vestuvės',
     role: 'Video filmavimas / Dronas / Montavimas',
-    cover: '/covers/belaiko.jpg',
+    cover: '/covers/italo.jpg',
     link: 'https://youtube.com/shorts/33CF5wBQIZU',
     tags: ['Gamta', 'Vestuvės', 'Itališkai', 'Turizmas'],
   },
