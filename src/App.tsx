@@ -104,6 +104,13 @@ const PROJECTS_BOTTOM = [
     link: 'https://youtube.com/shorts/15TzXgtX9vU',
     tags: ['Statybos', 'Reklama', 'Pastolių montavimas'],
   },
+  {
+    title: 'Samatele.lt | Pokalbių laida ',
+    role: 'Video filmavimas / Montavimas',
+    cover: '/covers/samatele.jpg',
+    link: 'https://youtube.com/shorts/15TzXgtX9vU',
+    tags: ['Statybos', 'Reklama', 'Pastolių montavimas'],
+  },
 ]
 
 const CONTRIBUTED = [
@@ -129,24 +136,10 @@ const CONTRIBUTED = [
     tags: ['Montavimas'],
   },
   {
-  title: 'Projektas 4',
+  title: 'DPC Klausimanija',
   role: 'Gautos medžiagos montavimas',
-  cover: '/covers/projektas4.jpg',
-  link: 'https://youtube.com/shorts/XXXX',
-  tags: ['Montavimas'],
-},
-{
-  title: 'Projektas 5',
-  role: 'Gautos medžiagos montavimas',
-  cover: '/covers/projektas5.jpg',
-  link: 'https://youtu.be/YYYY',
-  tags: ['Montavimas'],
-},
-{
-  title: 'Projektas 6',
-  role: 'Gautos medžiagos montavimas',
-  cover: '/covers/projektas6.jpg',
-  link: 'https://youtube.com/shorts/ZZZZ',
+  cover: '/covers/dpc.jpg',
+  link: 'https://youtube.com/shorts/2gPyo_n2TbU',
   tags: ['Montavimas'],
 },
 ]
