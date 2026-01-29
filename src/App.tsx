@@ -91,18 +91,18 @@ const PROJECTS_BOTTOM = [
     tags: ['Gamta', 'Vestuvės', 'Itališkai', 'Turizmas'],
   },
   {
-    title: 'Purlés profesionalų kosmetikos linija',
-    role: 'Video filmavimas / Montavimas / Produktų reklama',
+    title: 'Vestuvės sodyboje Belaiko',
+    role: 'Video filmavimas / Montavimas / Dronas',
     cover: '/covers/purles.jpg',
-    link: 'https://youtube.com/shorts/VNsLseKWxC0',
-    tags: ['Purlés kosmetika', 'Profesionalumas', 'Reklama'],
+    link: 'https://youtube.com/shorts/NwodhYKLHJA',
+    tags: ['Vestuvės', 'Turizmas', 'Reklama'],
   },
   {
-    title: 'Interviu su gydytoju',
-    role: 'Video filmavimas / Montavimas / Subtitrai',
+    title: 'Toolrenta | Pastolių montavimas ',
+    role: 'Video filmavimas / Montavimas / Dronas',
     cover: '/covers/dziugelis.jpg',
-    link: 'https://youtube.com/shorts/YXkr9E3q6GE',
-    tags: ['Sveikatingumas', 'Reklama', 'Profesionalumas'],
+    link: 'https://youtube.com/shorts/15TzXgtX9vU',
+    tags: ['Statybos', 'Reklama'],
   },
 ]
 
