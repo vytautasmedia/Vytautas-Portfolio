@@ -128,6 +128,27 @@ const CONTRIBUTED = [
     link: 'https://youtube.com/shorts/HRXAf8doui4',
     tags: ['Montavimas'],
   },
+  {
+  title: 'Projektas 4',
+  role: 'Gautos medžiagos montavimas',
+  cover: '/covers/projektas4.jpg',
+  link: 'https://youtube.com/shorts/XXXX',
+  tags: ['Montavimas'],
+},
+{
+  title: 'Projektas 5',
+  role: 'Gautos medžiagos montavimas',
+  cover: '/covers/projektas5.jpg',
+  link: 'https://youtu.be/YYYY',
+  tags: ['Montavimas'],
+},
+{
+  title: 'Projektas 6',
+  role: 'Gautos medžiagos montavimas',
+  cover: '/covers/projektas6.jpg',
+  link: 'https://youtube.com/shorts/ZZZZ',
+  tags: ['Montavimas'],
+},
 ]
 
 /* ============== Paslaugos ============== */
