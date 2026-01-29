@@ -105,11 +105,11 @@ const PROJECTS_BOTTOM = [
     tags: ['Statybos', 'Reklama', 'Pastolių montavimas'],
   },
   {
-    title: 'Samatele.lt | Pokalbių laida ',
+    title: 'Medinės santvaros - paprastai ir suprantamai',
     role: 'Video filmavimas / Montavimas',
     cover: '/covers/samatele.jpg',
-    link: 'https://youtube.com/shorts/15TzXgtX9vU',
-    tags: ['Statybos', 'Reklama', 'Pastolių montavimas'],
+    link: 'https://www.youtube.com/watch?v=9JVT4aP3R74',
+    tags: ['Statybos', 'Renginys', '10 Pokalbių laidų'],
   },
 ]
 
