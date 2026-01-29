@@ -62,7 +62,7 @@ const PROJECTS_TOP = [
   {
     title: 'Gargždų Banga vs Riteriai',
     role: 'Video filmavimas / Montavimas',
-    cover: '/covers/bangariteriai.jpg',
+    cover: '/covers/Banga.jpg',
     link: 'https://youtube.com/shorts/Z_vW5TBVmLk',
     tags: ['Sportas', 'Social Media', 'Reklama', 'Reels'],
   },
