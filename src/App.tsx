@@ -98,13 +98,6 @@ const PROJECTS_BOTTOM = [
     tags: ['Vestuvės', 'Turizmas', 'Reklama'],
   },
   {
-    title: 'Toolrenta | Pastolių montavimas ',
-    role: 'Video filmavimas / Montavimas / Dronas',
-    cover: '/covers/toolrenta.jpg',
-    link: 'https://youtube.com/shorts/15TzXgtX9vU',
-    tags: ['Statybos', 'Reklama', 'Pastolių montavimas'],
-  },
-  {
     title: 'Medinės santvaros - paprastai ir suprantamai',
     role: 'Video filmavimas / Montavimas',
     cover: '/covers/samatele.jpg',
