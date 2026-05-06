@@ -474,7 +474,7 @@ export default function App() {
             <div className="md:col-span-3">
               <h2 className="text-2xl md:text-3xl font-bold">Apie mane</h2>
               <div className="mt-3 text-neutral-700 dark:text-neutral-300 space-y-2">
-                <p>Esu Vytautas Uselis, kuriantis turinį Klaipėdoje ir už jos ribų.</p>
+                <p>Esu Vytautas Uselis, videografas, kuriantis įvairų turinį.</p>
                 <p>Kuriu vaizdinį turinį susijusį su įvairiais klientais.</p>
                 <p>Galiu pasiūlyti tiek idėją, tiek jos įgyvendinimą iki finalinio etapo.</p>
                 <p>Man svarbus aiškumas, rezultatas ir klientas.</p>
