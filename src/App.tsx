@@ -45,7 +45,7 @@ const PROFILE = {
   name: 'Vytautas Uselis',
   brand: 'vytautasmedia',
   title: 'Videografas • Kūrėjas • Social Media',
-  location: 'Klaipėda, Lietuva',
+  location: 'Lietuva',
   email: 'vytautasmedia.lt@gmail.com',
   ivaNote: 'Individuali veikla pagal pažymą',
   socials: {
