@@ -51,7 +51,7 @@ const PROFILE = {
   socials: {
     instagram: 'https://www.instagram.com/vytautas.uselis/',
     facebook: 'https://www.facebook.com/vytautas.uselis06',
-    youtube: 'https://www.youtube.com/@vuselis',
+    youtube: 'https://www.youtube.com/@vytautasu',
   },
 }
 
